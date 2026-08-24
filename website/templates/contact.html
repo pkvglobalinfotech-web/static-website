@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+
+<section class="container py-5 mt-5">
+	<div class="row g-4 align-items-start">
+		<div class="col-lg-5" data-aos="fade-right">
+			<h1 class="fw-bold">Contact Us</h1>
+			<p class="lead text-muted">Have a project or question? Send us a message and we'll get back within 1-2 business days.</p>
+
+			<div class="card mb-4 shadow-sm rounded-4 border-0">
+				<div class="card-body">
+					<h5 class="mb-3">Get in touch</h5>
+					<p class="mb-2"><strong>Phone:</strong> +91 90000 00000</p>
+					<p class="mb-2"><strong>Email:</strong> pkvglobalinfotech@gmail.com</p>
+					<p class="mb-0"><strong>Hours:</strong> Mon–Fri, 9am–6pm</p>
+				</div>
+			</div>
+
+			<div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm">
+				<iframe 
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3882.573291881112!2d79.86910877359558!3d13.314574507269116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a529dad50027017%3A0x55c71da9a10fdd8d!2sPKV%20GLOBAL%20INFOTECH%20PVT%20LTD!5e0!3m2!1sen!2sin!4v1785413213274!5m2!1sen!2sin"
+					style="border:0;"
+					allowfullscreen=""
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade">
+				</iframe>
+			</div>
+		</div>
+
+		<div class="col-lg-7" data-aos="fade-left">
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-{{ message.tags }} rounded-4">{{ message }}</div>
+				{% endfor %}
+			{% endif %}
+
+			<div class="card p-4 shadow-sm rounded-4 border-0">
+				<h4 class="mb-4">Send a Message</h4>
+				<form method="post" class="contact-form">
+					{% csrf_token %}
+					{{ form.non_field_errors }}
+					{{ form.as_p }}
+					<button type="submit" class="btn btn-primary mt-3 px-4">Send Message</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	// Add Bootstrap classes to form widgets rendered by Django's default widgets
+	(function(){
+		const form = document.querySelector('form.contact-form');
+		if (!form) return;
+		form.querySelectorAll('input, textarea, select').forEach(el => el.classList.add('form-control'));
+		form.querySelectorAll('label').forEach(l => l.classList.add('form-label'));
+	})();
+</script>
+
+{% endblock %}

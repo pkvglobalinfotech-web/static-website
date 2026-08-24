@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+
+<!-- Hero -->
+<section class="hero py-5">
+	<div class="container">
+		<div class="row g-4 align-items-center">
+			<div class="col-lg-6" data-aos="fade-right">
+				<h1>Build Digital Products That Scale</h1>
+				<p class="lead">We build websites, mobile apps and cloud-native SaaS products for startups and growing companies.</p>
+			</div>
+			<div class="col-lg-6 text-center" data-aos="zoom-in">
+				<img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" class="img-fluid" alt="hero image">
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- Stats -->
+<section class="container text-center py-4" style="color: white;">
+    <h2 class="section-title mb-4">Our Achievements</h2>
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+		<div class="col" data-aos="fade-up">
+			<div class="card border-0 shadow-sm p-4">
+				<h2 class="display-5 mb-2">150+</h2>
+				<p class="mb-0">Projects Delivered</p>
+			</div>
+		</div>
+		<div class="col" data-aos="fade-up">
+			<div class="card border-0 shadow-sm p-4">
+				<h2 class="display-5 mb-2">50+</h2>
+				<p class="mb-0">Satisfied Clients</p>
+			</div>
+		</div>
+		<div class="col" data-aos="fade-up">
+			<div class="card border-0 shadow-sm p-4">
+				<h2 class="display-5 mb-2">10</h2>
+				<p class="mb-0">Awards & Recognition</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- Services -->
+<section class="container py-5">
+	<h2 class="section-title text-center mb-4">Our Services</h2>
+	<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+		{% if services %}
+			{% for service in services %}
+			<div class="col" data-aos="flip-up">
+				<div class="service-card p-4 h-100 text-center">
+					<i class="bi {{ service.icon }} fs-1 mb-3"></i>
+					<h4>{{ service.title }}</h4>
+					<p>{{ service.description }}</p>
+				</div>
+			</div>
+			{% endfor %}
+		{% else %}
+			<div class="col" data-aos="flip-up">
+				<div class="service-card p-4 h-100 text-center">
+					<i class="bi bi-code-slash fs-1 mb-3"></i>
+					<h4>Web Development</h4>
+					<p>Django, React and modern web apps.</p>
+				</div>
+			</div>
+			<div class="col" data-aos="flip-up">
+				<div class="service-card p-4 h-100 text-center">
+					<i class="bi bi-phone fs-1 mb-3"></i>
+					<h4>Mobile Apps</h4>
+					<p>Android & iOS applications.</p>
+				</div>
+			</div>
+			<div class="col" data-aos="flip-up">
+					<p>AWS, Azure & GCP integrations.</p>
+				</div>
+			</div>
+		{% endif %}
+	</div>
+</section>
+
+
+<!-- Projects -->
+<section class="projects-section py-5">
+    <div class="projects-container">
+        <h2 class="section-title mb-4 latest-projects">Latest Projects</h2>
+
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4" data-aos="zoom-in">
+                <div class="card h-100 project-card">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+
+                        <span class="badge bg-secondary">
+                            {{ project.technology }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4" style="width: 1000px;">
+                <div class="card coming-soon-card shadow-lg border-0 h-100">
+
+                    <div class="card-body text-center d-flex flex-column justify-content-center">
+
+                        <div class="coming-icon mb-3">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+
+                        <h4 class="fw-bold">Project Coming Soon</h4>
+
+                        <p style="color:white;">
+                            We're working on an exciting new project.
+                            Stay tuned for updates!
+                        </p>
+
+                        <span class="coming-badge" >
+                            🚀 Coming Soon.....
+                        </span>
+
+                    </div>
+
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+
+<!-- <section class="container py-5">
+    <h2 class="section-title text-center mb-5">Clients Review</h2>
+
+    
+
+                    
+
+                
+
+
+            <div class="swiper-slide">
+                
+            </div>
+
+            <div class="swiper-slide">
+                
+            </div>
+
+            <div class="swiper-slide">
+                <div class="testimonial-card">
+                    <img src="https://i.pravatar.cc/100?img=52" class="testimonial-img">
+                    <h5>Arun Kumar</h5>
+                    <small>Startup Founder</small>
+                    <p>
+                        "Excellent cyber security consulting and very
+                        professional development team."
+                    </p>
+                    <div class="rating">★★★★★</div>
+                </div>
+            </div>
+
+            
+
+        </div>
+
+        <div class="swiper-pagination mt-4"></div>
+    </div>
+</section> -->
+
+<section class="container py-5">
+    <div class="row text-center g-4">
+        <h2 class="section-title mb-4 latest-projects">Client Reviews</h2>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+            <div class="testimonial-card">
+                <img src="https://i.pravatar.cc/100?img=12" class="testimonial-img">
+                <h5>David Willson</h5>
+                <small>CEO, Tech Solutions</small>
+                <p>
+                    "PKV Global Infotech delivered our website on time
+                    with excellent quality. Their support was outstanding."
+                </p>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+            <div class="testimonial-card">
+                <img src="https://i.pravatar.cc/100?img=32" class="testimonial-img">
+                <h5>Priya Nair</h5>
+                <small>Marketing Manager</small>
+                <p>
+                    "The Power BI dashboards transformed our reporting.
+                    Highly recommended."
+                </p>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+            <div class="testimonial-card">
+                <img src="https://i.pravatar.cc/100?img=42" class="testimonial-img">
+                <h5>Anusha Sharma</h5>
+                <small>Product Manager</small>
+                <p>
+                    "Their team is highly skilled and delivered our
+                    mobile app with great user experience."
+                </p>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-3 mb-4" data-aos="fade-up">
+            <div class="service-card p-4 h-100">
+                <div class="testimonial-card">
+                    <img src="https://i.pravatar.cc/100?img=52" class="testimonial-img">
+                    <h5>Arun Kumar</h5>
+                    <small>Startup Founder</small>
+                    <p>
+                        "Excellent cyber security consulting and very
+                        professional development team."
+                    </p>
+                    <div class="rating">★★★★★</div>
+                </div>
+                
+            </div>
+        </div> -->
+
+    </div>
+</section>
+
+
+
+
+<section class="container py-5">
+    <h2 class="section-title text-center mb-5">Why Choose Us?</h2>
+
+    <div class="row text-center">
+
+        <div class="col-md-3 mb-4" data-aos="fade-up">
+            <div class="service-card p-4 h-100">
+                <i class="fas fa-user-tie fa-3x text-primary mb-3"></i>
+                <h5>Expert Team</h5>
+                <p>Experienced developers delivering high-quality solutions.</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4" data-aos="fade-up">
+            <div class="service-card p-4 h-100">
+                <i class="fas fa-shield-alt fa-3x text-success mb-3"></i>
+                <h5>Secure Solutions</h5>
+                <p>Security-first development with modern best practices.</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4" data-aos="fade-up">
+            <div class="service-card p-4 h-100">
+                <i class="fas fa-clock fa-3x text-warning mb-3"></i>
+                <h5>On-Time Delivery</h5>
+                <p>Projects delivered within deadlines without compromising quality.</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4" data-aos="fade-up">
+            <div class="service-card p-4 h-100">
+                <i class="fas fa-headset fa-3x text-danger mb-3"></i>
+                <h5>24/7 Support</h5>
+                <p>Reliable customer support whenever you need assistance.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

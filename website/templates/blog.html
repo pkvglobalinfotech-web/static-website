@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+<h2 class="section-title">Blog</h2>
+<div class="row">
+{% for post in posts %}
+<div class="col-md-4">
+<div class="blog-card">
+<img src="{{post.image.url}}">
+<h4>{{post.title}}</h4>
+<p>{{post.content|truncatewords:20}}</p>
+</div>
+</div>
+{% empty %}
+<p>No blog posts available yet.</p>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
