@@ -28,8 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "static-website-does.onrender.com",
-    os.environ.get("RENDER_EXTERNAL_HOSTNAME", ""),
+    "static-website-does.onrender.com"
 ]
 
 
