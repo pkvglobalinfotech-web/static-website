@@ -26,10 +26,18 @@ SECRET_KEY = 'django-insecure-rmhfn19sv(ez+g(zd@-9go(0jv5)ploy%d6@s)#$o7*w*4wt(b
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "pkvglobalinfotech.com",
+    "www.pkvglobalinfotech.com",
+    "static-website-does.onrender.com",
     "localhost",
     "127.0.0.1",
-    "static-website-does.onrender.com"
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://pkvglobalinfotech.com",
+    "https://www.pkvglobalinfotech.com",
+]
+
 
 
 # Application definition
