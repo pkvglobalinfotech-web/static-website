@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 435 120" width="435" height="120">
+  <defs>
+    <!-- 3D Depth & Glow Filters -->
+    <filter id="pkv-depth" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#020617" flood-opacity="0.8"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#00d4ff" flood-opacity="0.25"/>
+    </filter>
+    <filter id="globe-depth" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="4" dy="7" stdDeviation="6" flood-color="#020617" flood-opacity="0.9"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#00d4ff" flood-opacity="0.3"/>
+    </filter>
+    <filter id="glow-blur">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+
+    <!-- Gradients for Letters -->
+    <linearGradient id="p-front" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="35%" stop-color="#0284c7"/>
+      <stop offset="70%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+    <linearGradient id="p-bevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="p-side" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </linearGradient>
+
+    <linearGradient id="k-front" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="40%" stop-color="#0284c7"/>
+      <stop offset="80%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="k-side" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+
+    <linearGradient id="v-front" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="85%" stop-color="#84cc16"/>
+      <stop offset="100%" stop-color="#a3e635"/>
+    </linearGradient>
+    <linearGradient id="v-side" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#365314"/>
+    </linearGradient>
+
+    <!-- Globe Sphere Gradients -->
+    <radialGradient id="globe-ocean" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="35%" stop-color="#0369a1"/>
+      <stop offset="70%" stop-color="#082f49"/>
+      <stop offset="95%" stop-color="#021429"/>
+      <stop offset="100%" stop-color="#010c1a"/>
+    </radialGradient>
+    <radialGradient id="globe-shine" cx="32%" cy="28%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65"/>
+      <stop offset="30%" stop-color="#38bdf8" stop-opacity="0.25"/>
+      <stop offset="70%" stop-color="#0369a1" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Orbit Ring Gradients -->
+    <linearGradient id="ring-lime" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#bef264"/>
+      <stop offset="35%" stop-color="#84cc16"/>
+      <stop offset="70%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="ring-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="45%" stop-color="#0284c7"/>
+      <stop offset="90%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+  </defs>
+
+  <!-- BACK ARC OF 3D ORBIT RING -->
+  <g opacity="0.95">
+    <path d="M 360 22 C 418 22 448 52 440 78 C 435 90 422 102 398 110" 
+          fill="none" stroke="url(#ring-lime)" stroke-width="11" stroke-linecap="round" opacity="0.65"/>
+    <path d="M 350 28 C 404 28 432 55 425 78 C 420 88 410 98 392 104" 
+          fill="none" stroke="url(#ring-blue)" stroke-width="8" stroke-linecap="round" opacity="0.55"/>
+  </g>
+
+  <!-- 3D GLOBE SPHERE -->
+  <g transform="translate(345, 68)" filter="url(#globe-depth)">
+    <!-- Atmosphere Halo -->
+    <circle cx="0" cy="0" r="50" fill="#00d4ff" opacity="0.25" filter="url(#glow-blur)"/>
+    <circle cx="0" cy="0" r="47" fill="#10b981" opacity="0.18"/>
+
+    <!-- Ocean Sphere Base -->
+    <circle cx="0" cy="0" r="45" fill="url(#globe-ocean)"/>
+
+    <!-- Continents in Cyan and Tech Grids -->
+    <g clip-path="url(#globe-mask)">
+      <clipPath id="globe-mask">
+        <circle cx="0" cy="0" r="45"/>
+      </clipPath>
+
+      <!-- Latitude and Longitude Grids -->
+      <ellipse cx="0" cy="0" rx="43" ry="16" fill="none" stroke="#38bdf8" stroke-width="0.8" opacity="0.35"/>
+      <ellipse cx="0" cy="0" rx="43" ry="32" fill="none" stroke="#38bdf8" stroke-width="0.8" opacity="0.3"/>
+      <ellipse cx="0" cy="0" rx="22" ry="43" fill="none" stroke="#38bdf8" stroke-width="0.8" opacity="0.3"/>
+
+      <!-- Continents -->
+      <path d="M -34 -26 C -28 -32 -16 -30 -12 -22 C -10 -16 -16 -10 -20 -6 C -24 -2 -28 0 -32 -4 C -36 -8 -38 -18 -34 -26 Z" fill="#22d3ee"/>
+      <path d="M -20 -4 C -14 -2 -12 8 -16 16 C -20 26 -26 30 -28 24 C -30 18 -28 8 -26 2 Z" fill="#06b6d4"/>
+      <path d="M -2 -32 C 10 -36 22 -34 32 -24 C 40 -16 36 -6 26 -10 C 18 -13 10 -18 2 -22 C -4 -24 -8 -28 -2 -32 Z" fill="#38bdf8"/>
+      <path d="M 10 -18 C 20 -20 34 -16 40 -6 C 42 2 36 10 26 6 C 16 2 10 -8 10 -18 Z" fill="#22d3ee"/>
+      <path d="M -4 -14 C 6 -14 12 -8 14 0 C 16 10 8 22 2 24 C -6 26 -8 16 -6 6 C -4 -2 -8 -8 -4 -14 Z" fill="#0ea5e9"/>
+      <path d="M 22 12 C 30 10 36 16 32 24 C 28 28 20 24 22 12 Z" fill="#38bdf8"/>
+
+      <!-- Constellation Synapse Points -->
+      <circle cx="-18" cy="-12" r="2.2" fill="#ffffff"/>
+      <circle cx="6" cy="-20" r="2.4" fill="#ffffff"/>
+      <circle cx="26" cy="-6" r="2.2" fill="#ffffff"/>
+      <circle cx="4" cy="6" r="2.2" fill="#ffffff"/>
+      <path d="M -18 -12 L 6 -20 L 26 -6 L 4 6 Z" stroke="#ffffff" stroke-width="0.9" opacity="0.65" fill="none"/>
+    </g>
+
+    <!-- Glass Specular Highlight -->
+    <circle cx="0" cy="0" r="45" fill="url(#globe-shine)"/>
+    <circle cx="0" cy="0" r="45" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
+  </g>
+
+  <!-- FRONT ARC OF 3D ORBIT RING -->
+  <g filter="url(#globe-depth)">
+    <path d="M 398 110 C 358 124 308 120 276 102 C 255 88 255 70 276 54 C 290 42 314 30 345 22" 
+          fill="none" stroke="url(#ring-lime)" stroke-width="11" stroke-linecap="round"/>
+    <path d="M 395 109 C 356 123 309 119 278 101 C 258 88 258 71 278 55" 
+          fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+
+    <path d="M 392 104 C 354 116 312 112 286 96 C 268 85 268 73 286 60 C 298 50 318 40 345 32" 
+          fill="none" stroke="url(#ring-blue)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 388 103 C 352 114 313 110 288 95 C 271 85 271 75 288 62" 
+          fill="none" stroke="#67e8f9" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+
+    <!-- Orbital Leading Sparkle -->
+    <circle cx="270" cy="72" r="4.5" fill="#ffffff" filter="url(#glow-blur)"/>
+    <circle cx="270" cy="72" r="2.5" fill="#ffffff"/>
+  </g>
+
+  <!-- 3D "PKV" LETTERING -->
+  <g filter="url(#pkv-depth)">
+    <!-- P 3D EXTRUSION SHADOW -->
+    <g transform="translate(4, 5)" fill="url(#p-side)">
+      <path d="M 22 24 L 66 24 C 88 24 100 35 100 52 C 100 69 88 80 66 80 L 48 80 L 48 114 L 22 114 Z M 48 44 L 48 60 L 64 60 C 72 60 76 57 76 52 C 76 47 72 44 64 44 Z"/>
+    </g>
+    <!-- P FRONT FACE -->
+    <g fill="url(#p-front)">
+      <path d="M 22 20 L 66 20 C 88 20 100 31 100 48 C 100 65 88 76 66 76 L 48 76 L 48 110 L 22 110 Z M 48 40 L 48 56 L 64 56 C 72 56 76 53 76 48 C 76 43 72 40 64 40 Z"/>
+    </g>
+    <!-- P BEVEL SPECULAR HIGHLIGHTS -->
+    <path d="M 23 21 L 66 21 C 85 21 97 31 98 47" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+    <path d="M 23 22 L 23 108" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <!-- P Sparkle -->
+    <g transform="translate(22, 110)">
+      <path d="M 0 -8 Q 0 0 8 0 Q 0 0 0 8 Q 0 0 -8 0 Q 0 0 0 -8 Z" fill="#ffffff" filter="url(#glow-blur)"/>
+      <circle cx="0" cy="0" r="2.5" fill="#ffffff"/>
+    </g>
+
+    <!-- K 3D EXTRUSION SHADOW -->
+    <g transform="translate(4, 5)" fill="url(#k-side)">
+      <path d="M 110 24 L 136 24 L 136 57 L 164 24 L 198 24 L 157 66 L 200 114 L 166 114 L 136 76 L 136 114 L 110 114 Z"/>
+    </g>
+    <!-- K FRONT FACE -->
+    <g fill="url(#k-front)">
+      <path d="M 110 20 L 136 20 L 136 53 L 164 20 L 198 20 L 157 62 L 200 110 L 166 110 L 136 72 L 136 110 L 110 110 Z"/>
+    </g>
+    <!-- K BEVEL HIGHLIGHTS -->
+    <path d="M 111 21 L 135 21 M 111 22 L 111 108" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+    <path d="M 166 21 L 196 21" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.75"/>
+    <path d="M 140 53 L 162 23" fill="none" stroke="#67e8f9" stroke-width="2" opacity="0.85"/>
+    <path d="M 140 74 L 194 108" fill="none" stroke="#a7f3d0" stroke-width="2" opacity="0.75"/>
+
+    <!-- V 3D EXTRUSION SHADOW -->
+    <g transform="translate(4, 5)" fill="url(#v-side)">
+      <path d="M 194 24 L 222 24 L 244 94 L 268 24 L 296 24 L 258 114 L 230 114 Z"/>
+    </g>
+    <!-- V FRONT FACE -->
+    <g fill="url(#v-front)">
+      <path d="M 194 20 L 222 20 L 244 90 L 268 20 L 296 20 L 258 110 L 230 110 Z"/>
+    </g>
+    <!-- V BEVEL HIGHLIGHTS -->
+    <path d="M 195 21 L 220 21" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+    <path d="M 270 21 L 294 21" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+    <path d="M 221 22 L 243 88" fill="none" stroke="#bef264" stroke-width="2.5" opacity="0.85"/>
+    <path d="M 267 22 L 245 88" fill="none" stroke="#fef08a" stroke-width="1.8" opacity="0.8"/>
+  </g>
+</svg>

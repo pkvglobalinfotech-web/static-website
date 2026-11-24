@@ -5,23 +5,34 @@
 
 {% block content %}
 
-<!-- 1. Introduction / Hero Section -->
-<section class="hero py-5" style="background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.15), transparent 40%), #0a192f; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-    <div class="container py-lg-4">
+<!-- 1. Introduction / Hero Section with Ambient AI Background Video -->
+<section class="hero hero-ai-video py-5 position-relative overflow-hidden" id="hero-section">
+    <!-- Ambient AI Background Video -->
+    <div class="hero-video-wrapper" aria-hidden="true">
+        <video class="hero-bg-video" autoplay loop muted playsinline poster="{% static 'video/ai_particles_poster.jpg' %}">
+            <source src="{% static 'video/ai_particles_3d.mp4' %}" type="video/mp4">
+            <source src="{% static 'video/ai_plexus_3d.mp4' %}" type="video/mp4">
+        </video>
+        <!-- Dark Cyber Overlay for maximum readability -->
+        <div class="hero-video-backdrop"></div>
+        <div class="hero-cyber-grid"></div>
+    </div>
+
+    <div class="container py-lg-5 position-relative" style="z-index: 2;">
         <div class="row align-items-center g-5">
-            <div class="col-lg-8 mx-auto text-center">
-                <span class="badge bg-primary bg-opacity-25 text-white px-3 py-2 rounded-pill mb-3">
-                    Product Engineering &amp; IT Services
+            <div class="col-lg-9 mx-auto text-center">
+                <span class="badge bg-primary bg-opacity-25 text-white px-3 py-2 rounded-pill mb-3 border border-primary border-opacity-25">
+                    <i class="bi bi-cpu me-1 text-info"></i> Product Engineering &amp; IT Services
                 </span>
-                <h1 class="display-4 fw-bold text-white mb-4">Build Digital Products That Scale</h1>
-                <p class="lead text-light mb-5" style="line-height: 1.8; opacity: 0.9;">
+                <h1 class="display-4 fw-bold text-white mb-4 hero-headline">Build Digital Products That Scale</h1>
+                <p class="lead text-light mb-5 hero-sublead" style="line-height: 1.8; opacity: 0.95;">
                     PKV Global Infotech develops hospital software, HR applications, and multi-module ERP solutions. We also help businesses build and maintain websites, connect their software systems, and get ongoing IT support.
                 </p>
                 <div class="d-flex flex-wrap justify-content-center gap-3">
-                    <a href="#products" class="btn btn-primary btn-lg px-4 py-3 rounded-pill fw-medium">
+                    <a href="#products" class="btn btn-primary btn-lg px-4 py-3 rounded-pill fw-medium hero-btn-primary">
                         Explore Products
                     </a>
-                    <a href="/contact/" class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill fw-medium">
+                    <a href="/contact/" class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill fw-medium hero-btn-secondary">
                         Discuss Your Requirement
                     </a>
                 </div>
