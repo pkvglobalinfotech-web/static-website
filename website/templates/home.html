@@ -30,284 +30,464 @@
     </div>
 </section>
 
-<!-- 3D Interactive Solutions Showcase (7 Slides) -->
-<section class="showcase-3d-section" id="showcase-3d">
-    <div class="container text-center mb-4">
-        <span class="slide-3d-badge">Interactive 3D Overview</span>
-        <h2 class="display-6 fw-bold text-white mb-2">Our Solutions &amp; Engineering Stack</h2>
-        <p class="text-secondary mx-auto mb-0" style="max-width: 680px; font-size: 0.95rem;">
-            Explore our specialized digital product suites and enterprise IT services built for scalability, reliability, and growth.
-        </p>
-    </div>
+<!-- 3D Interactive Solutions Showcase (Cyber-Modern Stage) -->
+<section class="showcase-3d-section py-5" id="showcase-3d">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="text-center mb-4">
+            <span class="showcase-eyebrow-tag">
+                <i class="bi bi-layers-fill me-1"></i> Interactive Solutions Showcase
+            </span>
+            <h2 class="display-6 fw-bold text-white mt-2 mb-2">Our Digital Products &amp; IT Capabilities</h2>
+            <p class="text-secondary mx-auto mb-4" style="max-width: 650px; font-size: 0.95rem;">
+                Select a domain below or use the controls to explore our specialised healthcare software, workforce applications, and enterprise IT services.
+            </p>
 
-    <!-- Swiper 3D Container -->
-    <div class="swiper showcase-3d-swiper">
-        <div class="swiper-wrapper">
-
-            <!-- Slide 1: Hospital Software / Healthcare ERP -->
-            <div class="swiper-slide slide-3d-item">
-                <div class="slide-3d-card">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-7 text-start">
-                            <span class="slide-3d-badge"><i class="bi bi-hospital me-1"></i> Healthcare Technology</span>
-                            <h3 class="slide-3d-title">Hospital Software &amp; Healthcare ERP</h3>
-                            <div class="slide-3d-subtitle">Comprehensive digital infrastructure engineered for modern clinical workflows.</div>
-                            <ul class="slide-3d-list">
-                                <li><i class="bi bi-check-circle-fill"></i> Streamlines patient registration, OP/IP admission, bed management, and discharge summaries.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Centralized doctor scheduling, appointment queues, and multi-department consultation records.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Integrated OP &amp; IP billing engine directly unified with diagnostic lab and pharmacy charges.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Fully automated computerized pharmacy management with real-time batch and expiry alerts.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Multi-department medical inventory tracking with reorder thresholds and vendor management.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Electronic Medical Records (EMR) ensuring rapid, secure physician access to diagnostic histories.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Granular role-based security protecting patient health information and clinical confidentiality.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Executive dashboards delivering real-time bed occupancy, pharmacy turnover, and daily revenue analytics.</li>
-                            </ul>
-                            <div class="d-flex flex-wrap gap-2 pt-2">
-                                <a href="/contact/?topic=Hospital%20Software%20%2F%20Hospital%20ERP" class="btn btn-primary rounded-pill px-4 py-2">
-                                    Enquire About Hospital ERP
-                                </a>
-                                <a href="/products/" class="btn btn-outline-light rounded-pill px-3 py-2">
-                                    View Product Scope
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="slide-3d-graphic-wrapper">
-                                <img src="{% static 'img/3d/hospital_3d.svg' %}" class="slide-3d-graphic img-fluid" alt="Hospital ERP 3D Illustration">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Interactive Domain Tabs Rail -->
+            <div class="showcase-tabs-wrapper">
+                <button type="button" class="showcase-tab-btn active" data-slide="0">
+                    <i class="bi bi-hospital"></i> Hospital ERP
+                </button>
+                <button type="button" class="showcase-tab-btn" data-slide="1">
+                    <i class="bi bi-people-fill"></i> HR Suite
+                </button>
+                <button type="button" class="showcase-tab-btn" data-slide="2">
+                    <i class="bi bi-diagram-3-fill"></i> Enterprise ERP
+                </button>
+                <button type="button" class="showcase-tab-btn" data-slide="3">
+                    <i class="bi bi-laptop"></i> Web Development
+                </button>
+                <button type="button" class="showcase-tab-btn" data-slide="4">
+                    <i class="bi bi-shield-check"></i> Web Maintenance
+                </button>
+                <button type="button" class="showcase-tab-btn" data-slide="5">
+                    <i class="bi bi-cpu-fill"></i> API Integration
+                </button>
+                <button type="button" class="showcase-tab-btn" data-slide="6">
+                    <i class="bi bi-headset"></i> IT Support
+                </button>
             </div>
-
-            <!-- Slide 2: HR Applications & Workforce Management -->
-            <div class="swiper-slide slide-3d-item">
-                <div class="slide-3d-card">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-7 text-start">
-                            <span class="slide-3d-badge"><i class="bi bi-people-fill me-1"></i> Workforce Platform</span>
-                            <h3 class="slide-3d-title">HR Applications &amp; Employee Portals</h3>
-                            <div class="slide-3d-subtitle">End-to-end human capital management designed for growing organizations.</div>
-                            <ul class="slide-3d-list">
-                                <li><i class="bi bi-check-circle-fill"></i> Centralized employee master database organizing profiles, contracts, and credential records.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Biometric device synchronization and mobile geo-fenced attendance tracking with shift rosters.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Automated monthly payroll computation factoring overtime, statutory tax brackets, and deductions.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Configurable leave policies with real-time balance accounting and multi-level approval hierarchies.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Self-Service (ESS) portal empowering staff to download salary slips and claim reimbursements.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Goal tracking, objective key results (OKR), and periodic employee appraisal workflows.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Seamless asset allocation logs tracking equipment issuance and return across departments.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Complete audit logs and statutory compliance reports ready for management review.</li>
-                            </ul>
-                            <div class="d-flex flex-wrap gap-2 pt-2">
-                                <a href="/contact/?topic=HR%20Applications" class="btn btn-primary rounded-pill px-4 py-2">
-                                    Enquire About HR Apps
-                                </a>
-                                <a href="/products/" class="btn btn-outline-light rounded-pill px-3 py-2">
-                                    View Product Scope
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="slide-3d-graphic-wrapper">
-                                <img src="{% static 'img/3d/hr_3d.svg' %}" class="slide-3d-graphic img-fluid" alt="HR Applications 3D Illustration">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3: Multi-Module Enterprise ERP -->
-            <div class="swiper-slide slide-3d-item">
-                <div class="slide-3d-card">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-7 text-start">
-                            <span class="slide-3d-badge"><i class="bi bi-diagram-3-fill me-1"></i> Enterprise Systems</span>
-                            <h3 class="slide-3d-title">Multi-Module Enterprise ERP Solution</h3>
-                            <div class="slide-3d-subtitle">Connected business operations orchestrating finance, inventory, and supply chain.</div>
-                            <ul class="slide-3d-list">
-                                <li><i class="bi bi-check-circle-fill"></i> Unified general ledger, accounts payable, accounts receivable, and automated bank reconciliation.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Multi-location warehouse tracking with serialized batch tagging and barcode scanner support.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Structured procurement pipeline from purchase requisitions to vendor evaluation and PO release.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Multi-tier configurable approval matrices for capital expenditures, expenses, and invoices.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> End-to-end sales order processing, delivery scheduling, and automated commercial invoicing.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Inter-departmental data synchronization eliminating redundant data entry and communication silos.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Real-time corporate KPI dashboards with profit-loss visibility and operational cost tracking.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Modular architecture allowing progressive rollout of specific functional units as you expand.</li>
-                            </ul>
-                            <div class="d-flex flex-wrap gap-2 pt-2">
-                                <a href="/contact/?topic=Multi-module%20ERP" class="btn btn-primary rounded-pill px-4 py-2">
-                                    Enquire About Enterprise ERP
-                                </a>
-                                <a href="/products/" class="btn btn-outline-light rounded-pill px-3 py-2">
-                                    View Product Scope
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="slide-3d-graphic-wrapper">
-                                <img src="{% static 'img/3d/erp_3d.svg' %}" class="slide-3d-graphic img-fluid" alt="Multi-Module ERP 3D Illustration">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 4: Website Design & Development -->
-            <div class="swiper-slide slide-3d-item">
-                <div class="slide-3d-card">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-7 text-start">
-                            <span class="slide-3d-badge"><i class="bi bi-laptop me-1"></i> Web Architecture</span>
-                            <h3 class="slide-3d-title">Website Design &amp; Full-Stack Development</h3>
-                            <div class="slide-3d-subtitle">Custom corporate websites and digital web applications built for speed and conversion.</div>
-                            <ul class="slide-3d-list">
-                                <li><i class="bi bi-check-circle-fill"></i> Bespoke UI/UX design tailored precisely to brand aesthetics, target audience, and business goals.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Mobile-first responsive layouts meticulously engineered for desktop, tablet, and mobile browsers.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> High-performance Django and Python backends ensuring enterprise security and fast execution.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Custom dynamic portals including product catalogues, booking engines, and customer dashboards.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Semantic HTML5 architecture and schema metadata optimized for search engine indexing.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Interactive front-end experiences engineered with modern JavaScript, CSS3, and smooth animations.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Strict adherence to web standards, cross-browser consistency, and sub-second loading speeds.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Complete integration with enquiry forms, lead generation tools, and customer contact pipelines.</li>
-                            </ul>
-                            <div class="d-flex flex-wrap gap-2 pt-2">
-                                <a href="/contact/?topic=Website%20Design%20%26%20Development" class="btn btn-primary rounded-pill px-4 py-2">
-                                    Enquire About Website Design
-                                </a>
-                                <a href="/services/" class="btn btn-outline-light rounded-pill px-3 py-2">
-                                    Explore IT Services
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="slide-3d-graphic-wrapper">
-                                <img src="{% static 'img/3d/webdev_3d.svg' %}" class="slide-3d-graphic img-fluid" alt="Website Development 3D Illustration">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 5: Website Maintenance & Technical Care -->
-            <div class="swiper-slide slide-3d-item">
-                <div class="slide-3d-card">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-7 text-start">
-                            <span class="slide-3d-badge"><i class="bi bi-shield-check me-1"></i> DevOps &amp; Security</span>
-                            <h3 class="slide-3d-title">Website Maintenance &amp; Technical Care</h3>
-                            <div class="slide-3d-subtitle">Proactive health checks, performance tuning, and continuous security protection.</div>
-                            <ul class="slide-3d-list">
-                                <li><i class="bi bi-check-circle-fill"></i> Routine system software upgrades, security patch applications, and vulnerability scans.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Ongoing content refreshes, promotional banner updates, and catalog revisions on demand.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Regular database cleanup, automated off-site backups, and tested disaster restoration routines.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Performance auditing, image asset optimization, and caching tuning for rapid page delivery.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Proactive broken link detection, submission form verification, and SSL certificate renewals.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Dedicated troubleshooting and enhancement support for existing websites you already own.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Continuous uptime monitoring with automated technical alerts for server abnormalities.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Transparent operational reports outlining completed maintenance tasks and security status.</li>
-                            </ul>
-                            <div class="d-flex flex-wrap gap-2 pt-2">
-                                <a href="/contact/?topic=Website%20Maintenance" class="btn btn-primary rounded-pill px-4 py-2">
-                                    Enquire About Maintenance
-                                </a>
-                                <a href="/services/" class="btn btn-outline-light rounded-pill px-3 py-2">
-                                    Explore IT Services
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="slide-3d-graphic-wrapper">
-                                <img src="{% static 'img/3d/maintenance_3d.svg' %}" class="slide-3d-graphic img-fluid" alt="Website Maintenance 3D Illustration">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 6: Software & API System Integration -->
-            <div class="swiper-slide slide-3d-item">
-                <div class="slide-3d-card">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-7 text-start">
-                            <span class="slide-3d-badge"><i class="bi bi-cpu-fill me-1"></i> Cloud Integration</span>
-                            <h3 class="slide-3d-title">Software &amp; Multi-System API Integration</h3>
-                            <div class="slide-3d-subtitle">Synchronizing business applications, external services, and IoT hardware seamlessly.</div>
-                            <ul class="slide-3d-list">
-                                <li><i class="bi bi-check-circle-fill"></i> Secure RESTful API and webhook architectures for automated real-time data exchange.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Connecting ERP modules with external accounting, inventory, and customer databases.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Payment gateway integration with Razorpay, Stripe, and modern digital payment methods.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Biometric hardware and physical attendance scanner connectivity into central cloud systems.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Robust data payload validation, schema mapping, and automated retry mechanisms for zero data loss.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Enterprise authentication using OAuth2, token validation, and encrypted transmission channels.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Granular rate limiting and firewall rules safeguarding endpoints against malicious spikes.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Comprehensive integration logging and latency monitoring for operational transparency.</li>
-                            </ul>
-                            <div class="d-flex flex-wrap gap-2 pt-2">
-                                <a href="/contact/?topic=Software%20%26%20API%20Integration" class="btn btn-primary rounded-pill px-4 py-2">
-                                    Enquire About API Integration
-                                </a>
-                                <a href="/services/" class="btn btn-outline-light rounded-pill px-3 py-2">
-                                    Explore IT Services
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="slide-3d-graphic-wrapper">
-                                <img src="{% static 'img/3d/integration_3d.svg' %}" class="slide-3d-graphic img-fluid" alt="API Integration 3D Illustration">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 7: IT Support & Application Maintenance -->
-            <div class="swiper-slide slide-3d-item">
-                <div class="slide-3d-card">
-                    <div class="row align-items-center g-4">
-                        <div class="col-lg-7 text-start">
-                            <span class="slide-3d-badge"><i class="bi bi-headset me-1"></i> Managed Services</span>
-                            <h3 class="slide-3d-title">IT Support &amp; Application Maintenance</h3>
-                            <div class="slide-3d-subtitle">Dedicated engineering support delivering rapid troubleshooting and system longevity.</div>
-                            <ul class="slide-3d-list">
-                                <li><i class="bi bi-check-circle-fill"></i> Systematic issue logging, root cause analysis, and rapid remediation for software defects.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Server health monitoring, disk resource tracking, and performance bottleneck prevention.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Agreed response commitments and predictable turnaround schedules tailored to operations.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Incremental feature enhancements and continuous code refactoring as business evolves.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Database query indexing, execution optimization, and safe data migration routines.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Third-party software patch testing and seamless version staging prior to deployment.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Direct technical communication channels with qualified developers for clear problem resolution.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Preventative maintenance schedules reducing unforeseen downtime and operational friction.</li>
-                            </ul>
-                            <div class="d-flex flex-wrap gap-2 pt-2">
-                                <a href="/contact/?topic=IT%20Support%20%26%20Application%20Maintenance" class="btn btn-primary rounded-pill px-4 py-2">
-                                    Enquire About IT Support
-                                </a>
-                                <a href="/services/" class="btn btn-outline-light rounded-pill px-3 py-2">
-                                    Explore IT Services
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="slide-3d-graphic-wrapper">
-                                <img src="{% static 'img/3d/support_3d.svg' %}" class="slide-3d-graphic img-fluid" alt="IT Support 3D Illustration">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-        <!-- 3D Navigation Controls -->
-        <div class="swiper-button-prev-3d" title="Previous Slide">
-            <i class="bi bi-chevron-left fs-5"></i>
-        </div>
-        <div class="swiper-button-next-3d" title="Next Slide">
-            <i class="bi bi-chevron-right fs-5"></i>
-        </div>
+        <!-- 3D Swiper Stage -->
+        <div class="swiper showcase-3d-swiper">
+            <div class="swiper-wrapper">
 
-        <!-- 3D Pagination -->
-        <div class="swiper-pagination-3d"></div>
+                <!-- Slide 1: Hospital Software / Healthcare ERP -->
+                <div class="swiper-slide">
+                    <div class="showcase-stage-card">
+                        <div class="row align-items-center g-4 g-lg-5">
+                            <div class="col-lg-7 text-start">
+                                <span class="badge bg-primary bg-opacity-25 text-info px-3 py-1 rounded-pill small mb-2">
+                                    HEALTHCARE TECHNOLOGY · SUITE 01
+                                </span>
+                                <h3 class="showcase-stage-title">Hospital Software &amp; Healthcare ERP</h3>
+                                <p class="showcase-stage-lead">
+                                    A unified digital operations platform engineered for multi-specialty hospitals, clinical networks, and healthcare providers. Connects every department from front desk registration to discharge summaries.
+                                </p>
+
+                                <div class="showcase-feature-grid">
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-person-badge-fill"></i> OP &amp; IP Patient Workflow</h6>
+                                        <p>Seamless registration, bed allocation, doctor scheduling, and electronic clinical history.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-receipt-cutoff"></i> Centralized Billing &amp; TPA</h6>
+                                        <p>Unified billing engine integrating diagnostics, ward charges, and insurance claims.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-capsule"></i> Digital Pharmacy &amp; Stock</h6>
+                                        <p>Computerized dispensary management with batch tracking, expiry alerts, and purchase orders.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-file-earmark-medical-fill"></i> EMR &amp; Medical Records</h6>
+                                        <p>Secure electronic medical records ensuring rapid, role-based doctor access and clinical compliance.</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap align-items-center gap-3 pt-2">
+                                    <a href="/contact/?topic=Hospital%20Software%20%2F%20Hospital%20ERP" class="btn btn-primary rounded-pill px-4 py-2 fw-medium">
+                                        Enquire About Hospital ERP <i class="bi bi-arrow-right ms-1"></i>
+                                    </a>
+                                    <a href="/products/" class="btn btn-outline-light rounded-pill px-3 py-2 small">
+                                        View Product Scope
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="showcase-visual-box">
+                                    <div class="showcase-ambient-halo"></div>
+                                    <span class="showcase-floating-badge showcase-floating-badge-1">
+                                        <i class="bi bi-heart-pulse-fill text-danger"></i> Clinical EMR Ready
+                                    </span>
+                                    <span class="showcase-floating-badge showcase-floating-badge-2">
+                                        <i class="bi bi-check-circle-fill text-success"></i> 99.9% Hospital Uptime
+                                    </span>
+                                    <img src="{% static 'img/3d/hospital_3d.svg' %}" class="showcase-3d-asset" alt="Hospital ERP 3D View">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: HR Applications -->
+                <div class="swiper-slide">
+                    <div class="showcase-stage-card">
+                        <div class="row align-items-center g-4 g-lg-5">
+                            <div class="col-lg-7 text-start">
+                                <span class="badge bg-primary bg-opacity-25 text-info px-3 py-1 rounded-pill small mb-2">
+                                    WORKFORCE PLATFORM · SUITE 02
+                                </span>
+                                <h3 class="showcase-stage-title">HR Applications &amp; Employee Portals</h3>
+                                <p class="showcase-stage-lead">
+                                    End-to-end human capital management designed for agile teams, corporate enterprises, and scaling organizations. Eliminates administrative overhead through automated employee lifecycle workflows.
+                                </p>
+
+                                <div class="showcase-feature-grid">
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-folder-symlink-fill"></i> Master Database &amp; Records</h6>
+                                        <p>Centralized digital employee files, employment contracts, and departmental directories.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-fingerprint"></i> Biometric &amp; Shift Attendance</h6>
+                                        <p>Automated fingerprint/facial scanner synchronization and mobile attendance tracking.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-cash-stack"></i> Payroll &amp; Tax Processing</h6>
+                                        <p>Accurate monthly salary computation, automated payslip generation, and statutory deductions.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-calendar2-check-fill"></i> Leave &amp; Self-Service (ESS)</h6>
+                                        <p>Multi-tier approval matrices, real-time leave balances, and employee claim reimbursement.</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap align-items-center gap-3 pt-2">
+                                    <a href="/contact/?topic=HR%20Applications" class="btn btn-primary rounded-pill px-4 py-2 fw-medium">
+                                        Enquire About HR Apps <i class="bi bi-arrow-right ms-1"></i>
+                                    </a>
+                                    <a href="/products/" class="btn btn-outline-light rounded-pill px-3 py-2 small">
+                                        View Product Scope
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="showcase-visual-box">
+                                    <div class="showcase-ambient-halo" style="background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%);"></div>
+                                    <span class="showcase-floating-badge showcase-floating-badge-1">
+                                        <i class="bi bi-fingerprint text-info"></i> Biometric Hardware Sync
+                                    </span>
+                                    <span class="showcase-floating-badge showcase-floating-badge-2">
+                                        <i class="bi bi-shield-check text-success"></i> Automated Payroll
+                                    </span>
+                                    <img src="{% static 'img/3d/hr_3d.svg' %}" class="showcase-3d-asset" alt="HR Applications 3D View">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Multi-Module Enterprise ERP -->
+                <div class="swiper-slide">
+                    <div class="showcase-stage-card">
+                        <div class="row align-items-center g-4 g-lg-5">
+                            <div class="col-lg-7 text-start">
+                                <span class="badge bg-primary bg-opacity-25 text-info px-3 py-1 rounded-pill small mb-2">
+                                    ENTERPRISE SYSTEMS · SUITE 03
+                                </span>
+                                <h3 class="showcase-stage-title">Multi-Module Enterprise ERP Solution</h3>
+                                <p class="showcase-stage-lead">
+                                    A connected business operating system uniting finance, procurement, warehouse inventory, and operational approvals. Delivers single-pane-of-glass executive visibility across all corporate departments.
+                                </p>
+
+                                <div class="showcase-feature-grid">
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-bank2"></i> Financial Ledger &amp; Invoicing</h6>
+                                        <p>General ledger, accounts payable/receivable, commercial invoicing, and bank reconciliation.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-boxes"></i> Multi-Warehouse Inventory</h6>
+                                        <p>Serialized batch tagging, barcode scanning, stock level alerts, and inter-branch transfers.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-cart-check-fill"></i> Procurement &amp; Vendor Portal</h6>
+                                        <p>Purchase requisitions, RFQs, vendor comparisons, automated PO release, and delivery tracking.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-diagram-3-fill"></i> Multi-Tier Approval Matrices</h6>
+                                        <p>Configurable approval chains for budgets, expenses, invoices, and operational sign-offs.</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap align-items-center gap-3 pt-2">
+                                    <a href="/contact/?topic=Multi-module%20ERP" class="btn btn-primary rounded-pill px-4 py-2 fw-medium">
+                                        Enquire About Enterprise ERP <i class="bi bi-arrow-right ms-1"></i>
+                                    </a>
+                                    <a href="/products/" class="btn btn-outline-light rounded-pill px-3 py-2 small">
+                                        View Product Scope
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="showcase-visual-box">
+                                    <div class="showcase-ambient-halo"></div>
+                                    <span class="showcase-floating-badge showcase-floating-badge-1">
+                                        <i class="bi bi-coin text-warning"></i> Multi-Currency Ledger
+                                    </span>
+                                    <span class="showcase-floating-badge showcase-floating-badge-2">
+                                        <i class="bi bi-truck text-info"></i> Warehouse Logistics
+                                    </span>
+                                    <img src="{% static 'img/3d/erp_3d.svg' %}" class="showcase-3d-asset" alt="Enterprise ERP 3D View">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Website Design & Development -->
+                <div class="swiper-slide">
+                    <div class="showcase-stage-card">
+                        <div class="row align-items-center g-4 g-lg-5">
+                            <div class="col-lg-7 text-start">
+                                <span class="badge bg-primary bg-opacity-25 text-info px-3 py-1 rounded-pill small mb-2">
+                                    WEB ARCHITECTURE · SERVICE 01
+                                </span>
+                                <h3 class="showcase-stage-title">Website Design &amp; Full-Stack Development</h3>
+                                <p class="showcase-stage-lead">
+                                    Bespoke digital product engineering crafting modern corporate websites, customer portals, and web applications. Engineered for maximum visual impact, lightning performance, and high conversion.
+                                </p>
+
+                                <div class="showcase-feature-grid">
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-brush-fill"></i> Custom UI/UX Engineering</h6>
+                                        <p>Tailored interactive layouts crafted to reflect brand identity and drive qualified customer inquiries.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-phone-fill"></i> Mobile-First Responsive Layouts</h6>
+                                        <p>Pixel-perfect rendering meticulously tuned across smartphones, tablets, and high-res desktops.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-code-slash"></i> High-Performance Web Backends</h6>
+                                        <p>Secure Django, Python, and modern JavaScript architectures optimized for sub-second speeds.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-search"></i> Search Engine Optimization (SEO)</h6>
+                                        <p>Clean semantic HTML5, fast asset loading, and structured metadata for search visibility.</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap align-items-center gap-3 pt-2">
+                                    <a href="/contact/?topic=Website%20Design%20%26%20Development" class="btn btn-primary rounded-pill px-4 py-2 fw-medium">
+                                        Enquire About Website Design <i class="bi bi-arrow-right ms-1"></i>
+                                    </a>
+                                    <a href="/services/" class="btn btn-outline-light rounded-pill px-3 py-2 small">
+                                        Explore IT Services
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="showcase-visual-box">
+                                    <div class="showcase-ambient-halo" style="background: radial-gradient(circle, rgba(6, 182, 212, 0.25), transparent 70%);"></div>
+                                    <span class="showcase-floating-badge showcase-floating-badge-1">
+                                        <i class="bi bi-speedometer2 text-success"></i> Sub-Second Loading
+                                    </span>
+                                    <span class="showcase-floating-badge showcase-floating-badge-2">
+                                        <i class="bi bi-phone text-info"></i> Responsive Across Devices
+                                    </span>
+                                    <img src="{% static 'img/3d/webdev_3d.svg' %}" class="showcase-3d-asset" alt="Website Design 3D View">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5: Website Maintenance & Technical Care -->
+                <div class="swiper-slide">
+                    <div class="showcase-stage-card">
+                        <div class="row align-items-center g-4 g-lg-5">
+                            <div class="col-lg-7 text-start">
+                                <span class="badge bg-primary bg-opacity-25 text-info px-3 py-1 rounded-pill small mb-2">
+                                    DEVOPS &amp; CONTINUOUS CARE · SERVICE 02
+                                </span>
+                                <h3 class="showcase-stage-title">Website Maintenance &amp; Technical Care</h3>
+                                <p class="showcase-stage-lead">
+                                    Proactive technical maintenance, regular content updates, and continuous security protection for your digital assets. Keep your web properties fast, reliable, and vulnerability-free without internal hiring.
+                                </p>
+
+                                <div class="showcase-feature-grid">
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-shield-lock-fill"></i> Core Framework &amp; Patches</h6>
+                                        <p>Scheduled vulnerability assessments, dependency updates, and SSL certificate maintenance.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-pencil-square"></i> Content &amp; Banner Refreshes</h6>
+                                        <p>Rapid turnaround for on-demand promotional updates, catalog revisions, and copy changes.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-cloud-arrow-up-fill"></i> Automated Cloud Backups</h6>
+                                        <p>Regular database snapshots, offsite cloud storage, and tested restoration procedures.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-activity"></i> Performance &amp; CDN Tuning</h6>
+                                        <p>Image compression, cache optimization, broken link checks, and uptime monitoring.</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap align-items-center gap-3 pt-2">
+                                    <a href="/contact/?topic=Website%20Maintenance" class="btn btn-primary rounded-pill px-4 py-2 fw-medium">
+                                        Enquire About Maintenance <i class="bi bi-arrow-right ms-1"></i>
+                                    </a>
+                                    <a href="/services/" class="btn btn-outline-light rounded-pill px-3 py-2 small">
+                                        Explore IT Services
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="showcase-visual-box">
+                                    <div class="showcase-ambient-halo" style="background: radial-gradient(circle, rgba(16, 185, 129, 0.25), transparent 70%);"></div>
+                                    <span class="showcase-floating-badge showcase-floating-badge-1">
+                                        <i class="bi bi-shield-check text-success"></i> Zero Vulnerability Care
+                                    </span>
+                                    <span class="showcase-floating-badge showcase-floating-badge-2">
+                                        <i class="bi bi-database-check text-info"></i> Daily Cloud Snapshots
+                                    </span>
+                                    <img src="{% static 'img/3d/maintenance_3d.svg' %}" class="showcase-3d-asset" alt="Website Maintenance 3D View">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 6: Software & API Integration -->
+                <div class="swiper-slide">
+                    <div class="showcase-stage-card">
+                        <div class="row align-items-center g-4 g-lg-5">
+                            <div class="col-lg-7 text-start">
+                                <span class="badge bg-primary bg-opacity-25 text-info px-3 py-1 rounded-pill small mb-2">
+                                    CLOUD INTEGRATION · SERVICE 03
+                                </span>
+                                <h3 class="showcase-stage-title">Software &amp; Multi-System API Integration</h3>
+                                <p class="showcase-stage-lead">
+                                    Bridge disconnected software systems, third-party cloud services, and IoT hardware into a synchronized ecosystem. Enables seamless, automated data exchange with zero duplicate manual entry.
+                                </p>
+
+                                <div class="showcase-feature-grid">
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-link-45deg"></i> RESTful API &amp; Webhook Dev</h6>
+                                        <p>Custom endpoints and event-driven data webhooks for instantaneous cross-system sync.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-credit-card-2-front-fill"></i> Payment &amp; Banking Gateways</h6>
+                                        <p>Secure integrations with Razorpay, Stripe, and unified banking endpoints for reconciliation.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-cpu"></i> Hardware &amp; Biometric Linkage</h6>
+                                        <p>Physical attendance clocks, barcode readers, and IoT devices integrated into central systems.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-key-fill"></i> Encrypted OAuth2 Pipelines</h6>
+                                        <p>Tokenized authentication, payload validation, and automated retry queues for reliability.</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap align-items-center gap-3 pt-2">
+                                    <a href="/contact/?topic=Software%20%26%20API%20Integration" class="btn btn-primary rounded-pill px-4 py-2 fw-medium">
+                                        Enquire About API Integration <i class="bi bi-arrow-right ms-1"></i>
+                                    </a>
+                                    <a href="/services/" class="btn btn-outline-light rounded-pill px-3 py-2 small">
+                                        Explore IT Services
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="showcase-visual-box">
+                                    <div class="showcase-ambient-halo"></div>
+                                    <span class="showcase-floating-badge showcase-floating-badge-1">
+                                        <i class="bi bi-cloud-check text-info"></i> REST / JSON Webhooks
+                                    </span>
+                                    <span class="showcase-floating-badge showcase-floating-badge-2">
+                                        <i class="bi bi-lock-fill text-warning"></i> End-to-End Encrypted
+                                    </span>
+                                    <img src="{% static 'img/3d/integration_3d.svg' %}" class="showcase-3d-asset" alt="API Integration 3D View">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 7: IT Support & Application Maintenance -->
+                <div class="swiper-slide">
+                    <div class="showcase-stage-card">
+                        <div class="row align-items-center g-4 g-lg-5">
+                            <div class="col-lg-7 text-start">
+                                <span class="badge bg-primary bg-opacity-25 text-info px-3 py-1 rounded-pill small mb-2">
+                                    MANAGED SERVICES · SERVICE 04
+                                </span>
+                                <h3 class="showcase-stage-title">IT Support &amp; Application Maintenance</h3>
+                                <p class="showcase-stage-lead">
+                                    Dependable technical support, structured bug remediation, and continuous infrastructure monitoring. Delivers predictable response commitments and experienced developers to protect your operations.
+                                </p>
+
+                                <div class="showcase-feature-grid">
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-bug-fill"></i> Rapid Bug Triage &amp; Fixes</h6>
+                                        <p>Root cause diagnosis, reproducible bug isolation, and rapid hotfixes for critical defects.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-hdd-network-fill"></i> Server &amp; Cloud Monitoring</h6>
+                                        <p>Proactive disk, memory, and CPU tracking to identify and resolve bottlenecks before downtime.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-arrow-repeat"></i> Continuous Feature Upgrades</h6>
+                                        <p>Incremental refactoring, code quality updates, and performance tuning as business scales.</p>
+                                    </div>
+                                    <div class="showcase-feature-item">
+                                        <h6><i class="bi bi-chat-left-dots-fill"></i> Direct Engineer Communication</h6>
+                                        <p>Direct communication with technical engineers under transparent, confirmed SLA schedules.</p>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap align-items-center gap-3 pt-2">
+                                    <a href="/contact/?topic=IT%20Support%20%26%20Application%20Maintenance" class="btn btn-primary rounded-pill px-4 py-2 fw-medium">
+                                        Enquire About IT Support <i class="bi bi-arrow-right ms-1"></i>
+                                    </a>
+                                    <a href="/services/" class="btn btn-outline-light rounded-pill px-3 py-2 small">
+                                        Explore IT Services
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="showcase-visual-box">
+                                    <div class="showcase-ambient-halo"></div>
+                                    <span class="showcase-floating-badge showcase-floating-badge-1">
+                                        <i class="bi bi-server text-info"></i> Proactive Cloud Health
+                                    </span>
+                                    <span class="showcase-floating-badge showcase-floating-badge-2">
+                                        <i class="bi bi-clock-history text-success"></i> SLA Turnaround
+                                    </span>
+                                    <img src="{% static 'img/3d/support_3d.svg' %}" class="showcase-3d-asset" alt="IT Support 3D View">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Navigation Bar & Progress Counter -->
+            <div class="showcase-controls-bar d-flex justify-content-between align-items-center mt-4">
+                <div class="d-flex align-items-center gap-2">
+                    <button type="button" class="swiper-button-prev-3d" title="Previous Slide">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button type="button" class="swiper-button-next-3d" title="Next Slide">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                    <span id="showcaseSlideCounter" class="text-secondary small fw-bold ms-3">01 / 07</span>
+                </div>
+                <div class="swiper-pagination-3d"></div>
+            </div>
+        </div>
     </div>
 </section>
 

@@ -1154,210 +1154,294 @@ font-size:34px;
 }
 
 /* ===================================================
-   3D Interactive Showcase Slider (Swiper Coverflow)
+   3D Interactive Showcase Stage (Cyber-Modern Stage)
 =================================================== */
 .showcase-3d-section {
     position: relative;
-    background: radial-gradient(circle at 50% 25%, rgba(30, 58, 138, 0.28), transparent 75%), #070d1e;
+    background: radial-gradient(circle at 50% 15%, rgba(30, 58, 138, 0.35), transparent 70%), #070d1e;
     overflow: hidden;
-    padding: 75px 0 65px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 80px 0 70px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.showcase-3d-section::before {
-    content: '';
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.08), transparent 70%);
-    top: -150px;
-    left: -150px;
-    pointer-events: none;
-}
-
-.showcase-3d-section::after {
-    content: '';
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
-    bottom: -150px;
-    right: -150px;
-    pointer-events: none;
-}
-
-.showcase-3d-swiper {
-    width: 100%;
-    padding-top: 25px;
-    padding-bottom: 60px;
-}
-
-.swiper-slide.slide-3d-item {
-    width: 980px;
-    max-width: 92vw;
-    transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-.slide-3d-card {
-    background: linear-gradient(135deg, rgba(15, 27, 53, 0.96), rgba(9, 17, 36, 0.98));
-    border: 1px solid rgba(0, 212, 255, 0.22);
-    border-radius: 24px;
-    padding: 2.5rem;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 212, 255, 0.12);
-    backdrop-filter: blur(16px);
-    transition: all 0.35s ease;
-    position: relative;
-    min-height: 480px;
-}
-
-.slide-3d-card:hover {
-    border-color: rgba(0, 212, 255, 0.45);
-    box-shadow: 0 30px 75px rgba(0, 0, 0, 0.75), 0 0 45px rgba(0, 212, 255, 0.25);
-}
-
-.slide-3d-badge {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 30px;
-    font-size: 0.78rem;
+.showcase-eyebrow-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 0.7px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
     background: rgba(0, 212, 255, 0.12);
     color: #00d4ff !important;
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    margin-bottom: 0.85rem;
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
 }
 
-.slide-3d-title {
-    color: #ffffff !important;
-    font-size: 1.75rem;
-    font-weight: 800;
-    line-height: 1.25;
-    margin-bottom: 0.35rem;
-}
-
-.slide-3d-subtitle {
-    color: #94a3b8 !important;
-    font-size: 0.88rem;
+/* Domain Tabs Rail */
+.showcase-tabs-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
     margin-bottom: 1rem;
 }
 
-.slide-3d-list {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0 1.5rem 0;
-}
-
-.slide-3d-list li {
-    font-size: 0.88rem;
-    color: #cbd5e1 !important;
-    margin-bottom: 0.45rem;
+.showcase-tab-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-size: 0.84rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
-    align-items: flex-start;
-    line-height: 1.5;
+    align-items: center;
+    gap: 7px;
 }
 
-.slide-3d-list li i {
+.showcase-tab-btn:hover {
+    background: rgba(0, 212, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(0, 212, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.showcase-tab-btn.active {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.22), rgba(59, 130, 246, 0.35));
+    color: #00d4ff;
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.35);
+    font-weight: 600;
+    transform: translateY(-2px);
+}
+
+/* Stage Card */
+.showcase-3d-swiper {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.showcase-stage-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(8, 14, 28, 0.98));
+    border: 1px solid rgba(0, 212, 255, 0.22);
+    border-radius: 28px;
+    padding: 3rem 3.5rem;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s ease;
+}
+
+.showcase-stage-card:hover {
+    border-color: rgba(0, 212, 255, 0.45);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 212, 255, 0.2);
+}
+
+.showcase-stage-title {
+    color: #ffffff !important;
+    font-size: 2.1rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+}
+
+.showcase-stage-lead {
+    color: #94a3b8 !important;
+    font-size: 0.96rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+}
+
+/* Modular Feature Matrix Grid */
+.showcase-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 1.75rem 0;
+}
+
+.showcase-feature-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    padding: 0.9rem 1.1rem;
+    transition: all 0.25s ease;
+}
+
+.showcase-feature-item:hover {
+    background: rgba(0, 212, 255, 0.07);
+    border-color: rgba(0, 212, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.showcase-feature-item h6 {
+    color: #ffffff !important;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.showcase-feature-item h6 i {
     color: #00d4ff !important;
-    margin-right: 0.65rem;
     font-size: 0.95rem;
-    flex-shrink: 0;
-    margin-top: 0.15rem;
 }
 
-.slide-3d-graphic-wrapper {
+.showcase-feature-item p {
+    color: #94a3b8 !important;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* 3D Visual Box & Floating Badges */
+.showcase-visual-box {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    min-height: 320px;
-    perspective: 1000px;
+    padding: 1rem;
+    min-height: 380px;
 }
 
-.slide-3d-graphic {
+.showcase-ambient-halo {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.22), transparent 70%);
+    border-radius: 50%;
+    filter: blur(45px);
+    animation: pulseHalo 5s ease-in-out infinite alternate;
+}
+
+@keyframes pulseHalo {
+    0% { transform: scale(0.92); opacity: 0.55; }
+    100% { transform: scale(1.18); opacity: 0.9; }
+}
+
+.showcase-3d-asset {
     width: 100%;
-    max-width: 380px;
+    max-width: 400px;
     height: auto;
-    filter: drop-shadow(0 18px 35px rgba(0, 0, 0, 0.65));
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.8));
     animation: float3DIso 4.5s ease-in-out infinite alternate;
-    transform-style: preserve-3d;
 }
 
-@keyframes float3DIso {
-    0% {
-        transform: translateY(0px) rotateX(2deg) rotateY(-3deg);
-    }
-    100% {
-        transform: translateY(-14px) rotateX(-2deg) rotateY(3deg);
-    }
+.showcase-floating-badge {
+    position: absolute;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    backdrop-filter: blur(12px);
+    padding: 7px 14px;
+    border-radius: 12px;
+    color: #ffffff !important;
+    font-size: 0.78rem;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
 }
 
-/* Custom Swiper 3D Navigation Controls */
+.showcase-floating-badge-1 {
+    top: 10%;
+    right: 2%;
+    animation: floatBadge1 4s ease-in-out infinite alternate;
+}
+
+.showcase-floating-badge-2 {
+    bottom: 8%;
+    left: 2%;
+    animation: floatBadge2 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatBadge1 {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+@keyframes floatBadge2 {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(8px); }
+}
+
+/* Controls Bar */
+.showcase-controls-bar {
+    padding: 0 0.5rem;
+}
+
 .swiper-button-prev-3d,
 .swiper-button-next-3d {
-    width: 50px;
-    height: 50px;
-    background: rgba(15, 27, 53, 0.88);
-    border: 1px solid rgba(0, 212, 255, 0.35);
+    width: 44px;
+    height: 44px;
+    background: rgba(15, 27, 53, 0.9);
+    border: 1px solid rgba(0, 212, 255, 0.3);
     color: #00d4ff;
     border-radius: 50%;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: 0.3s ease;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
 }
-
-.swiper-button-prev-3d { left: 15px; }
-.swiper-button-next-3d { right: 15px; }
 
 .swiper-button-prev-3d:hover,
 .swiper-button-next-3d:hover {
     background: #00d4ff;
-    color: #060810;
-    box-shadow: 0 0 25px rgba(0, 212, 255, 0.7);
+    color: #040812;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
     border-color: #00d4ff;
 }
 
 .swiper-pagination-3d {
-    text-align: center;
-    margin-top: 15px;
+    display: inline-block;
+    width: auto !important;
 }
 
 .swiper-pagination-3d .swiper-pagination-bullet {
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.3);
     opacity: 0.6;
-    width: 10px;
-    height: 10px;
-    margin: 0 6px;
+    width: 9px;
+    height: 9px;
+    margin: 0 5px;
     transition: all 0.3s ease;
 }
 
 .swiper-pagination-3d .swiper-pagination-bullet-active {
     background: #00d4ff;
     opacity: 1;
-    width: 32px;
+    width: 28px;
     border-radius: 8px;
-    box-shadow: 0 0 12px rgba(0, 212, 255, 0.85);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
 }
 
 @media (max-width: 991px) {
-    .slide-3d-card {
-        padding: 1.75rem;
+    .showcase-stage-card {
+        padding: 2rem 1.5rem;
     }
-    .slide-3d-graphic-wrapper {
-        min-height: 240px;
-        margin-top: 1.5rem;
+    .showcase-feature-grid {
+        grid-template-columns: 1fr;
     }
-    .slide-3d-title {
-        font-size: 1.45rem;
+    .showcase-stage-title {
+        font-size: 1.6rem;
+    }
+    .showcase-visual-box {
+        min-height: 280px;
     }
 }
+
 
 
