@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="supGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="rackFront" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="supFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Ground Plane Shadow -->
+  <g transform="translate(250, 260)">
+    <ellipse cx="0" cy="40" rx="190" ry="70" fill="url(#supGlow)" filter="url(#supFilter)" opacity="0.35"/>
+    <path d="M-150,35 L0,-40 L150,35 L0,110 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- 3D Isometric Server Rack Cabinet (Left) -->
+  <g transform="translate(160, 180)">
+    <!-- Top Face -->
+    <polygon points="0,-60 40,-40 0,-20 -40,-40" fill="#334155" stroke="#38bdf8" stroke-width="1.5"/>
+    <!-- Left Face -->
+    <polygon points="-40,-40 0,-20 0,60 -40,40" fill="url(#rackFront)" stroke="#38bdf8" stroke-width="1.5"/>
+    <!-- Right Face -->
+    <polygon points="0,-20 40,-40 40,40 0,60" fill="#090d16" stroke="#1e293b" stroke-width="1.5"/>
+
+    <!-- Server Unit Slots & LEDs -->
+    <g fill="#10b981" filter="url(#supFilter)">
+      <circle cx="-25" cy="-8" r="2"/>
+      <circle cx="-15" cy="-3" r="2"/>
+      <circle cx="-25" cy="12" r="2"/>
+      <circle cx="-15" cy="17" r="2"/>
+      <circle cx="-25" cy="32" r="2"/>
+      <circle cx="-15" cy="37" r="2"/>
+    </g>
+    <!-- Server Disk Slots -->
+    <line x1="-32" y1="-12" x2="-5" y2="2" stroke="#64748b" stroke-width="1.5"/>
+    <line x1="-32" y1="8" x2="-5" y2="22" stroke="#64748b" stroke-width="1.5"/>
+    <line x1="-32" y1="28" x2="-5" y2="42" stroke="#64748b" stroke-width="1.5"/>
+  </g>
+
+  <!-- 3D Monitoring Console Station (Right) -->
+  <g transform="translate(320, 160)" filter="url(#supFilter)">
+    <!-- Screen Frame -->
+    <polygon points="-50,-50 40,-70 50,20 -40,40" fill="#0b1329" stroke="#00d4ff" stroke-width="2"/>
+    <!-- Display Face -->
+    <polygon points="-45,-44 35,-62 43,14 -35,32" fill="#0284c7" opacity="0.6"/>
+
+    <!-- Live Performance Chart Lines on Screen -->
+    <polyline points="-30,-10 -15,-25 0,-15 15,-35 30,-20" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+    <circle cx="15" cy="-35" r="3" fill="#22c55e" filter="url(#supFilter)"/>
+    <text x="-5" y="15" font-family="monospace" font-size="10" font-weight="bold" fill="#38bdf8">OK · 24/7</text>
+  </g>
+
+  <!-- 3D Diagnostic Headset & Support Tool Badge (Center Floating) -->
+  <g transform="translate(250, 90)" filter="url(#supFilter)">
+    <circle cx="0" cy="0" r="26" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+    <!-- Wrench / Tool Icon -->
+    <path d="M-8,-10 L-2,-4 L-10,12 L-14,8 L-6,-8 Z" fill="#f59e0b"/>
+    <!-- Headset Curve -->
+    <path d="M-14,2 A14,14 0 0,1 14,2" fill="none" stroke="#38bdf8" stroke-width="3"/>
+    <circle cx="-14" cy="4" r="3" fill="#38bdf8"/>
+    <circle cx="14" cy="4" r="3" fill="#38bdf8"/>
+  </g>
+
+  <!-- Connecting Hologram Rays -->
+  <line x1="200" y1="140" x2="270" y2="150" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,3"/>
+</svg>

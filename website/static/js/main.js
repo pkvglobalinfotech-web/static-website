@@ -46,6 +46,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Swiper Guard
     if (typeof Swiper !== "undefined") {
+        if (document.querySelector(".showcase-3d-swiper")) {
+            new Swiper(".showcase-3d-swiper", {
+                effect: "coverflow",
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: "auto",
+                spaceBetween: 30,
+                loop: true,
+                speed: 750,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                },
+                coverflowEffect: {
+                    rotate: 15,
+                    stretch: 0,
+                    depth: 220,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+                pagination: {
+                    el: ".swiper-pagination-3d",
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next-3d",
+                    prevEl: ".swiper-button-prev-3d",
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        coverflowEffect: { rotate: 0, depth: 80 },
+                    },
+                    768: {
+                        slidesPerView: 1.15,
+                        coverflowEffect: { rotate: 10, depth: 160 },
+                    },
+                    1200: {
+                        slidesPerView: 1.25,
+                        coverflowEffect: { rotate: 15, depth: 220 },
+                    },
+                },
+            });
+        }
+
         if (document.querySelector(".swiper")) {
             new Swiper(".swiper", {
                 slidesPerView: 3,

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="erpGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="cubeTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="cubeLeft" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="cubeRight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <filter id="erpFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Ground Plane Shadow -->
+  <g transform="translate(250, 260)">
+    <ellipse cx="0" cy="40" rx="200" ry="75" fill="url(#erpGlow)" filter="url(#erpFilter)" opacity="0.35"/>
+    <path d="M-160,35 L0,-45 L160,35 L0,115 Z" fill="#0b1329" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- Central Multi-Module Core 3D Cube -->
+  <g transform="translate(250, 180)">
+    <!-- Main Center Cube -->
+    <polygon points="0,-60 60,-25 0,10 -60,-25" fill="url(#cubeTop)" stroke="#93c5fd" stroke-width="1.5"/>
+    <polygon points="-60,-25 0,10 0,80 -60,45" fill="url(#cubeLeft)" stroke="#3b82f6" stroke-width="1.5"/>
+    <polygon points="0,10 60,-25 60,45 0,80" fill="url(#cubeRight)" stroke="#2563eb" stroke-width="1.5"/>
+    
+    <!-- Central Glowing Core Logo -->
+    <circle cx="0" cy="-25" r="16" fill="#00d4ff" filter="url(#erpFilter)" opacity="0.9"/>
+    <text x="0" y="-19" font-family="sans-serif" font-weight="bold" font-size="14" fill="#040b1e" text-anchor="middle">ERP</text>
+  </g>
+
+  <!-- Satellite Modular Cubes (Finance, Inventory, HR, Purchasing) -->
+  <!-- Top Satellite (Finance) -->
+  <g transform="translate(250, 80)" filter="url(#erpFilter)">
+    <polygon points="0,-25 25,-10 0,5 -25,-10" fill="#f59e0b"/>
+    <polygon points="-25,-10 0,5 0,35 -25,20" fill="#d97706"/>
+    <polygon points="0,5 25,-10 25,20 0,35" fill="#b45309"/>
+    <text x="0" y="2" font-family="sans-serif" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">$</text>
+  </g>
+
+  <!-- Left Satellite (Supply Chain / Warehouse) -->
+  <g transform="translate(130, 160)" filter="url(#erpFilter)">
+    <polygon points="0,-25 25,-10 0,5 -25,-10" fill="#10b981"/>
+    <polygon points="-25,-10 0,5 0,35 -25,20" fill="#059669"/>
+    <polygon points="0,5 25,-10 25,20 0,35" fill="#047857"/>
+    <!-- Box icon -->
+    <path d="M-6,0 L0,4 L6,0 M0,4 L0,12" stroke="#fff" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- Right Satellite (Procurement / Approvals) -->
+  <g transform="translate(370, 160)" filter="url(#erpFilter)">
+    <polygon points="0,-25 25,-10 0,5 -25,-10" fill="#8b5cf6"/>
+    <polygon points="-25,-10 0,5 0,35 -25,20" fill="#7c3aed"/>
+    <polygon points="0,5 25,-10 25,20 0,35" fill="#6d28d9"/>
+    <!-- Checkmark icon -->
+    <path d="M-6,3 L-2,7 L7,-2" stroke="#fff" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Interconnecting Data Beams -->
+  <line x1="250" y1="115" x2="250" y2="140" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,2"/>
+  <line x1="155" y1="170" x2="200" y2="185" stroke="#10b981" stroke-width="2" stroke-dasharray="4,2"/>
+  <line x1="345" y1="170" x2="300" y2="185" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,2"/>
+
+  <!-- Orbiting Data Rings -->
+  <ellipse cx="250" cy="190" rx="170" ry="70" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="8,6" opacity="0.6"/>
+</svg>

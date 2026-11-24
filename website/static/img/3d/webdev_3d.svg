@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="webGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="codeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="webFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Shadow Floor -->
+  <g transform="translate(250, 260)">
+    <ellipse cx="0" cy="40" rx="190" ry="70" fill="url(#webGlow)" filter="url(#webFilter)" opacity="0.35"/>
+  </g>
+
+  <!-- 3D Perspective Browser Frame -->
+  <g transform="translate(250, 160)">
+    <!-- Back Window Shadow / Depth -->
+    <polygon points="-140,-80 120,-110 140,40 -120,70" fill="#020617" opacity="0.6"/>
+    <!-- Main Window Face -->
+    <polygon points="-150,-90 110,-120 130,30 -130,60" fill="url(#codeGrad)" stroke="#38bdf8" stroke-width="2"/>
+    
+    <!-- Window Header Bar -->
+    <polygon points="-150,-90 110,-120 113,-100 -147,-70" fill="#334155"/>
+    <!-- Window Control Buttons (Red, Yellow, Green) -->
+    <circle cx="-135" cy="-77" r="4" fill="#ef4444"/>
+    <circle cx="-123" cy="-79" r="4" fill="#eab308"/>
+    <circle cx="-111" cy="-81" r="4" fill="#22c55e"/>
+
+    <!-- Code & Layout Wireframe Inside Browser -->
+    <line x1="-125" y1="-50" x2="-60" y2="-58" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-120" y1="-30" x2="20" y2="-46" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-115" y1="-10" x2="-20" y2="-21" stroke="#f43f5e" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-110" y1="10" x2="60" y2="-10" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-105" y1="30" x2="-40" y2="23" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- 3D Floating Mobile Device Mockup (Foreground) -->
+    <g transform="translate(80, 40)" filter="url(#webFilter)">
+      <!-- Phone Body -->
+      <polygon points="-30,-50 30,-60 40,40 -20,50" fill="#0f172a" stroke="#00d4ff" stroke-width="2"/>
+      <!-- Phone Screen -->
+      <polygon points="-25,-44 25,-52 35,34 -15,42" fill="#0284c7" opacity="0.75"/>
+      <line x1="-10" y1="-30" x2="15" y2="-34" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      <line x1="-8" y1="-15" x2="10" y2="-18" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="10" cy="20" r="5" fill="#34d399"/>
+    </g>
+  </g>
+
+  <!-- Floating 3D Code Tokens & Neon Brackets -->
+  <g transform="translate(100, 100)" filter="url(#webFilter)">
+    <rect x="-24" y="-18" width="48" height="36" rx="8" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="0" y="6" font-family="monospace" font-size="16" font-weight="bold" fill="#00d4ff" text-anchor="middle">&lt;/&gt;</text>
+  </g>
+  <g transform="translate(390, 90)" filter="url(#webFilter)">
+    <rect x="-20" y="-18" width="40" height="36" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+    <text x="0" y="6" font-family="monospace" font-size="18" font-weight="bold" fill="#34d399" text-anchor="middle">{ }</text>
+  </g>
+</svg>

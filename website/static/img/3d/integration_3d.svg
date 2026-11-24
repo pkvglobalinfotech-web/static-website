@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="intGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <filter id="intFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Ground Plane Shadow -->
+  <g transform="translate(250, 260)">
+    <ellipse cx="0" cy="40" rx="200" ry="75" fill="url(#intGlow)" filter="url(#intFilter)" opacity="0.35"/>
+    <path d="M-160,35 L0,-45 L160,35 L0,115 Z" fill="#0f172a" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- Central 3D Cloud API Gateway Hub -->
+  <g transform="translate(250, 150)" filter="url(#intFilter)">
+    <!-- 3D Cloud Base -->
+    <path d="M-40,10 C-55,10 -65,-5 -55,-20 C-60,-35 -40,-45 -25,-40 C-15,-60 20,-60 30,-40 C45,-45 60,-30 55,-15 C65,0 55,15 40,15 Z" fill="url(#cloudGrad)" stroke="#a5f3fc" stroke-width="2"/>
+    <!-- API Text on Cloud -->
+    <text x="0" y="-8" font-family="sans-serif" font-weight="900" font-size="18" fill="#040b1e" text-anchor="middle">API</text>
+  </g>
+
+  <!-- Peripheral System Nodes (Connected Systems) -->
+  <!-- Node 1: ERP / Database Node (Left) -->
+  <g transform="translate(110, 140)" filter="url(#intFilter)">
+    <polygon points="0,-20 22,-9 0,2 -22,-9" fill="#8b5cf6"/>
+    <polygon points="-22,-9 0,2 0,26 -22,15" fill="#6d28d9"/>
+    <polygon points="0,2 22,-9 22,15 0,26" fill="#5b21b6"/>
+    <text x="0" y="38" font-family="sans-serif" font-size="10" font-weight="bold" fill="#a78bfa" text-anchor="middle">ERP</text>
+  </g>
+
+  <!-- Node 2: Payment Gateway / Banking (Right) -->
+  <g transform="translate(390, 140)" filter="url(#intFilter)">
+    <polygon points="0,-20 22,-9 0,2 -22,-9" fill="#10b981"/>
+    <polygon points="-22,-9 0,2 0,26 -22,15" fill="#059669"/>
+    <polygon points="0,2 22,-9 22,15 0,26" fill="#047857"/>
+    <text x="0" y="38" font-family="sans-serif" font-size="10" font-weight="bold" fill="#6ee7b7" text-anchor="middle">Pay</text>
+  </g>
+
+  <!-- Node 3: Third-Party Webhook / IoT (Bottom Center) -->
+  <g transform="translate(250, 270)" filter="url(#intFilter)">
+    <polygon points="0,-18 20,-8 0,2 -20,-8" fill="#f59e0b"/>
+    <polygon points="-20,-8 0,2 0,22 -20,12" fill="#d97706"/>
+    <polygon points="0,2 20,-8 20,12 0,22" fill="#b45309"/>
+    <text x="0" y="34" font-family="sans-serif" font-size="10" font-weight="bold" fill="#fcd34d" text-anchor="middle">Sync</text>
+  </g>
+
+  <!-- Glowing Connecting Pipelines with Data Packets -->
+  <!-- Left to Cloud -->
+  <line x1="135" y1="145" x2="190" y2="148" stroke="#a78bfa" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <circle cx="160" cy="146" r="4" fill="#00d4ff" filter="url(#intFilter)"/>
+
+  <!-- Right to Cloud -->
+  <line x1="365" y1="145" x2="310" y2="148" stroke="#6ee7b7" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <circle cx="340" cy="146" r="4" fill="#10b981" filter="url(#intFilter)"/>
+
+  <!-- Bottom to Cloud -->
+  <line x1="250" y1="245" x2="250" y2="185" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <circle cx="250" cy="215" r="4" fill="#f59e0b" filter="url(#intFilter)"/>
+
+  <!-- Floating REST / JSON Badges -->
+  <g transform="translate(180, 80)" filter="url(#intFilter)">
+    <rect x="-24" y="-12" width="48" height="24" rx="12" fill="#0f172a" stroke="#00d4ff" stroke-width="1.5"/>
+    <text x="0" y="4" font-family="sans-serif" font-size="9" font-weight="bold" fill="#00d4ff" text-anchor="middle">REST</text>
+  </g>
+  <g transform="translate(320, 80)" filter="url(#intFilter)">
+    <rect x="-24" y="-12" width="48" height="24" rx="12" fill="#0f172a" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="0" y="4" font-family="sans-serif" font-size="9" font-weight="bold" fill="#a78bfa" text-anchor="middle">JSON</text>
+  </g>
+</svg>
