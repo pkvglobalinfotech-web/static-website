@@ -20,8 +20,8 @@ class WebsiteTests(TestCase):
             "We also help businesses build and maintain websites, connect their software systems, and get ongoing IT support."
         )
         self.company.email = "contact@pkvglobalinfotech.com"
-        self.company.phone = ""
-        self.company.address = "Chennai, Tamil Nadu, India"
+        self.company.phone = "+91 93455 96961"
+        self.company.address = "23(1)/190, puduchery, Pennaluripeta, Tiruvallur, Tiruvallur- 602026, Tamil Nadu"
         self.company.business_hours = ""
         self.company.save()
 
@@ -248,8 +248,10 @@ class WebsiteTests(TestCase):
             self.assertEqual(response.status_code, 200)
             content = response.content.decode('utf-8')
 
-            # Official email used consistently
+            # Official email, phone, and address used consistently
             self.assertIn('contact@pkvglobalinfotech.com', content)
+            self.assertIn('+91 93455 96961', content)
+            self.assertIn('23(1)/190, puduchery, Pennaluripeta, Tiruvallur, Tiruvallur- 602026, Tamil Nadu', content)
 
             # No placeholder phone numbers
             self.assertNotIn('+91 XXXXX XXXXX', content)

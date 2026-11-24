@@ -27,8 +27,8 @@ class Command(BaseCommand):
                     "We also help businesses build and maintain websites, connect their software systems, and get ongoing IT support."
                 ),
                 email="contact@pkvglobalinfotech.com",
-                phone="",
-                address="Chennai, Tamil Nadu, India",
+                phone="+91 93455 96961",
+                address="23(1)/190, puduchery, Pennaluripeta, Tiruvallur, Tiruvallur- 602026, Tamil Nadu",
                 business_hours="",
             )
             self.stdout.write(self.style.SUCCESS('Created default Company Settings.'))

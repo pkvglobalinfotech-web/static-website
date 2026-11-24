@@ -13,8 +13,8 @@ class CompanySetting(models.Model):
         )
     )
     email = models.EmailField(blank=True, default="contact@pkvglobalinfotech.com")
-    phone = models.CharField(max_length=50, blank=True, help_text="Official phone number. Leave empty if unconfirmed.")
-    address = models.TextField(blank=True, default="Chennai, Tamil Nadu, India")
+    phone = models.CharField(max_length=50, blank=True, default="+91 93455 96961", help_text="Official phone number.")
+    address = models.TextField(blank=True, default="23(1)/190, puduchery, Pennaluripeta, Tiruvallur, Tiruvallur- 602026, Tamil Nadu")
     business_hours = models.CharField(max_length=100, blank=True, help_text="e.g. Mon–Fri 9am–6pm IST. Leave empty until confirmed.")
 
     # Social links - only shown if non-empty
