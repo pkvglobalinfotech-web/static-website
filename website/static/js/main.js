@@ -93,37 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             });
         }
-
-        if (document.querySelector(".swiper")) {
-            new Swiper(".swiper", {
-                slidesPerView: 3,
-                spaceBetween: 20,
-                autoplay: {
-                    delay: 2000
-                }
-            });
-        }
-
-        if (document.querySelector(".testimonialSwiper")) {
-            new Swiper(".testimonialSwiper", {
-                slidesPerView: 3,
-                spaceBetween: 30,
-                loop: true,
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true
-                },
-                breakpoints: {
-                    0: { slidesPerView: 1 },
-                    768: { slidesPerView: 2 },
-                    992: { slidesPerView: 3 }
-                }
-            });
-        }
     }
 
     // Prevent multiple simultaneous form submissions
