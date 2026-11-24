@@ -60,11 +60,11 @@
         <div class="col-lg-7">
             {% if messages %}
                 {% for message in messages %}
-                    <div class="alert alert-success border-0 shadow-sm rounded-4 p-4 mb-4" role="alert" style="background-color: #198754; color: white;">
+                    <div class="alert {% if message.tags == 'info' %}alert-info{% else %}alert-success{% endif %} border-0 shadow-sm rounded-4 p-4 mb-4" role="alert" style="background-color: {% if message.tags == 'info' %}#0284c7{% else %}#198754{% endif %}; color: white;">
                         <div class="d-flex align-items-center">
-                            <i class="bi bi-check-circle-fill fs-3 me-3"></i>
+                            <i class="bi {% if message.tags == 'info' %}bi-info-circle-fill{% else %}bi-check-circle-fill{% endif %} fs-3 me-3"></i>
                             <div>
-                                <h5 class="alert-heading mb-1">Message Sent</h5>
+                                <h5 class="alert-heading mb-1">{% if message.tags == 'info' %}Notice{% else %}Message Sent{% endif %}</h5>
                                 <p class="mb-0 small">{{ message }}</p>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                 <h3 class="text-white fw-bold mb-1">Send an Enquiry</h3>
                 <p class="text-secondary small mb-4">Please provide details about your project or service requirement.</p>
 
-                <form method="post" novalidate>
+                <form method="post" id="enquiryForm" novalidate>
                     {% csrf_token %}
 
                     {% if form.non_field_errors %}
@@ -142,7 +142,7 @@
                         {% endif %}
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-medium w-100">
+                    <button type="submit" id="submitEnquiryBtn" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-medium w-100">
                         Submit Enquiry
                     </button>
                 </form>

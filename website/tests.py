@@ -334,3 +334,29 @@ class WebsiteTests(TestCase):
             self.assertIsNotNone(enquiry)
             self.assertFalse(enquiry.email_sent)
             self.assertIn('SMTP Connection Refused', enquiry.email_error)
+
+    def test_prevent_duplicate_submissions_at_same_time(self):
+        """Verify submitting the same enquiry within 60 seconds is rejected and deduplicated."""
+        post_data = {
+            'topic': 'General Enquiry',
+            'name': 'Duplicate Tester',
+            'email': 'duplicate@example.com',
+            'phone': '+91 99999 88888',
+            'message': 'Submitting once then rapidly again.',
+        }
+        # First submission succeeds
+        res1 = self.client.post('/contact/', post_data, follow=True)
+        self.assertEqual(res1.status_code, 200)
+        self.assertContains(res1, "Thank you! Your enquiry has been received.")
+
+        initial_count = Contact.objects.filter(email='duplicate@example.com').count()
+        self.assertEqual(initial_count, 1)
+
+        # Immediate second submission is caught and prevented
+        res2 = self.client.post('/contact/', post_data, follow=True)
+        self.assertEqual(res2.status_code, 200)
+        self.assertContains(res2, "Your enquiry has already been received")
+
+        # Database record count remains 1 (no duplicate record created)
+        after_count = Contact.objects.filter(email='duplicate@example.com').count()
+        self.assertEqual(after_count, 1)

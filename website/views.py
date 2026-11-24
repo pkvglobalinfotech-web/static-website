@@ -1,8 +1,10 @@
+from datetime import timedelta
 import logging
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
+from django.utils import timezone
 
 from .models import Service, Project, Contact
 from .forms import ContactForm
@@ -82,6 +84,23 @@ def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
+            email = form.cleaned_data.get("email")
+            topic = form.cleaned_data.get("topic")
+
+            # Prevent duplicate submissions at the same time (within 60 seconds)
+            one_minute_ago = timezone.now() - timedelta(seconds=60)
+            if Contact.objects.filter(
+                email__iexact=email,
+                topic=topic,
+                created__gte=one_minute_ago
+            ).exists():
+                logger.warning("Duplicate enquiry prevented for %s on topic %s", email, topic)
+                messages.info(
+                    request,
+                    "Your enquiry has already been received. Our team will review your requirement and follow up shortly."
+                )
+                return redirect("contact")
+
             enquiry = form.save(commit=False)
             enquiry.status = "new"
             enquiry.save()

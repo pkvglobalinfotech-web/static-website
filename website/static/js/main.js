@@ -77,4 +77,23 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     }
+
+    // Prevent multiple simultaneous form submissions
+    const enquiryForm = document.getElementById("enquiryForm");
+    const submitBtn = document.getElementById("submitEnquiryBtn");
+    if (enquiryForm && submitBtn) {
+        enquiryForm.addEventListener("submit", function (e) {
+            if (submitBtn.classList.contains("submitting")) {
+                e.preventDefault();
+                return false;
+            }
+            submitBtn.classList.add("submitting");
+            submitBtn.style.pointerEvents = "none";
+            submitBtn.style.opacity = "0.7";
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Submitting...';
+            setTimeout(function () {
+                submitBtn.disabled = true;
+            }, 50);
+        });
+    }
 });
