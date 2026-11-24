@@ -19,7 +19,7 @@ class WebsiteTests(TestCase):
             "PKV Global Infotech develops hospital software, HR applications, and multi-module ERP solutions. "
             "We also help businesses build and maintain websites, connect their software systems, and get ongoing IT support."
         )
-        self.company.email = "contact@pkvglobalinfotech.com"
+        self.company.email = "pkvglobalinfotech@gmail.com"
         self.company.phone = "+91 93455 96961"
         self.company.address = "23(1)/190, puduchery, Pennaluripeta, Tiruvallur, Tiruvallur- 602026, Tamil Nadu"
         self.company.business_hours = ""
@@ -189,7 +189,7 @@ class WebsiteTests(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         sent_email = mail.outbox[0]
         self.assertIn("Hospital Software / Hospital ERP", sent_email.subject)
-        self.assertEqual(sent_email.to, ['contact@pkvglobalinfotech.com'])
+        self.assertEqual(sent_email.to, ['pkvglobalinfotech@gmail.com'])
         self.assertEqual(sent_email.reply_to, ['admin@cityhospital.example'])
         self.assertEqual(sent_email.from_email, 'no-reply@pkvglobalinfotech.com')
 
@@ -229,7 +229,7 @@ class WebsiteTests(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         sent_email = mail.outbox[0]
         self.assertIn("Website Maintenance", sent_email.subject)
-        self.assertEqual(sent_email.to, ['contact@pkvglobalinfotech.com'])
+        self.assertEqual(sent_email.to, ['pkvglobalinfotech@gmail.com'])
         self.assertEqual(sent_email.reply_to, ['support@apexretailers.example'])
 
         self.client.force_login(self.admin_user)
@@ -249,14 +249,13 @@ class WebsiteTests(TestCase):
             content = response.content.decode('utf-8')
 
             # Official email, phone, and address used consistently
-            self.assertIn('contact@pkvglobalinfotech.com', content)
+            self.assertIn('pkvglobalinfotech@gmail.com', content)
             self.assertIn('+91 93455 96961', content)
             self.assertIn('23(1)/190, puduchery, Pennaluripeta, Tiruvallur, Tiruvallur- 602026, Tamil Nadu', content)
 
             # No placeholder phone numbers
             self.assertNotIn('+91 XXXXX XXXXX', content)
             self.assertNotIn('+91 90000 00000', content)
-            self.assertNotIn('pkvglobalinfotech@gmail.com', content)
 
             # No unconfirmed response promises
             self.assertNotIn('within 48 hours', content)

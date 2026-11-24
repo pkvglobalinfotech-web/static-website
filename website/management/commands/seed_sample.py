@@ -26,7 +26,7 @@ class Command(BaseCommand):
                     "PKV Global Infotech develops hospital software, HR applications, and multi-module ERP solutions. "
                     "We also help businesses build and maintain websites, connect their software systems, and get ongoing IT support."
                 ),
-                email="contact@pkvglobalinfotech.com",
+                email="pkvglobalinfotech@gmail.com",
                 phone="+91 93455 96961",
                 address="23(1)/190, puduchery, Pennaluripeta, Tiruvallur, Tiruvallur- 602026, Tamil Nadu",
                 business_hours="",

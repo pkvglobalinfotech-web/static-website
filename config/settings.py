@@ -147,7 +147,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'no-reply@pkvglobalinfotech.com')
 
 # Company Monitored Inbox for notification delivery
-NOTIFICATION_EMAIL = os.getenv('NOTIFICATION_EMAIL', 'contact@pkvglobalinfotech.com')
+NOTIFICATION_EMAIL = os.getenv('NOTIFICATION_EMAIL', 'pkvglobalinfotech@gmail.com')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

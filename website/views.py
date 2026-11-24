@@ -87,7 +87,7 @@ def contact(request):
             enquiry.save()
 
             # Attempt notification email with configured sender, company inbox, and visitor Reply-To
-            recipient = getattr(settings, "NOTIFICATION_EMAIL", "contact@pkvglobalinfotech.com")
+            recipient = getattr(settings, "NOTIFICATION_EMAIL", "pkvglobalinfotech@gmail.com")
             from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "no-reply@pkvglobalinfotech.com")
 
             subject = f"[Website Enquiry] {enquiry.topic} from {enquiry.name}"
