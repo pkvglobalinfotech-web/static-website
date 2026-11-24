@@ -1,4 +1,5 @@
 from django.test import TestCase, Client, override_settings
+from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
 from django.contrib.auth.models import User
@@ -191,7 +192,7 @@ class WebsiteTests(TestCase):
         self.assertIn("Hospital Software / Hospital ERP", sent_email.subject)
         self.assertEqual(sent_email.to, ['pkvglobalinfotech@gmail.com'])
         self.assertEqual(sent_email.reply_to, ['admin@cityhospital.example'])
-        self.assertEqual(sent_email.from_email, 'no-reply@pkvglobalinfotech.com')
+        self.assertEqual(sent_email.from_email, settings.DEFAULT_FROM_EMAIL)
 
         # Admin display
         self.client.force_login(self.admin_user)
