@@ -1,133 +1,72 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Services{% endblock %}
+{% block title %}IT Services | {{ company.company_name|default:"PKV Global Infotech" }}{% endblock %}
 
 {% block content %}
-
-<!-- <div class="container py-5 mt-5">
-
-    <h2 class="text-center mb-5 fw-bold">Our Services</h2>
-
-    <div class="row g-4">
-
-        <div class="col-md-4">
-            <div class="card shadow border-0 h-100 text-center p-4">
-                <div class="card-body">
-                    
-                    <h4>Web Development</h4>
-                    <p>Django, HTML, CSS, Bootstrap, JavaScript</p>
-                </div>
-            </div>
+<section class="py-5" style="background-color: #0a192f;">
+    <div class="container py-4">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <span class="text-primary text-uppercase fw-semibold small tracking-wide">Technical Offerings</span>
+            <h1 class="display-5 fw-bold text-white mt-1">IT &amp; Software Services</h1>
+            <p class="text-secondary mx-auto" style="max-width: 680px;">
+                We help businesses build and maintain websites, connect their software systems, and get ongoing technical support.
+            </p>
         </div>
 
-        <div class="col-md-4">
-            <div class="card shadow border-0 h-100 text-center p-4">
-                <div class="card-body">
-                    
-                    <h4>Mobile App Development</h4>
-                    <p>Android & iOS Applications using Flutter and React Native</p>
+        <!-- Services Grid -->
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-6 col-md-6">
+                <div class="card h-100 border-0 p-4 d-flex flex-column" style="background-color: #0f1b35; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 16px;">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="rounded-3 p-3 d-flex align-items-center justify-content-center me-3" style="background-color: rgba(139, 92, 246, 0.15); width: 64px; height: 64px;">
+                            <i class="bi {{ service.icon|default:'bi-code-slash' }} text-primary fs-2"></i>
+                        </div>
+                        <div>
+                            <h3 class="h4 text-white fw-bold mb-1">{{ service.title }}</h3>
+                        </div>
+                    </div>
+
+                    <p class="text-light small mb-4 opacity-75 flex-grow-1" style="line-height: 1.7;">
+                        {{ service.description }}
+                    </p>
+
+                    <!-- Published Commitments: only shown when confirmed by staff -->
+                    {% if service.support_hours or service.response_commitment %}
+                    <div class="p-3 mb-4 rounded" style="background-color: rgba(255,255,255,0.04); border-left: 3px solid #8b5cf6;">
+                        <h6 class="text-uppercase small fw-bold text-secondary mb-2" style="font-size: 0.75rem;">
+                            Confirmed Service Parameters:
+                        </h6>
+                        {% if service.support_hours %}
+                        <div class="small text-light mb-1">
+                            <i class="bi bi-clock text-primary me-2"></i>
+                            <strong>Support Hours:</strong> {{ service.support_hours }}
+                        </div>
+                        {% endif %}
+                        {% if service.response_commitment %}
+                        <div class="small text-light">
+                            <i class="bi bi-shield-check text-success me-2"></i>
+                            <strong>Response Commitment:</strong> {{ service.response_commitment }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto">
+                        <a href="/contact/?topic={{ service.title|urlencode }}" class="btn btn-outline-light btn-sm rounded-pill px-4 py-2">
+                            Enquire About This Service
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card shadow border-0 h-100 text-center p-4">
-                <div class="card-body">
-                   
-                    <h4>Digital Marketing</h4>
-                    <p>SEO, Social Media Marketing, Branding & Advertising</p>
-                </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-secondary">Services are being loaded from the database.</p>
             </div>
+            {% endfor %}
         </div>
-        <div class="col-md-4">
-            <div class="card shadow border-0 h-100 text-center p-4">
-                <div class="card-body">
-                   
-                    <h4>Cyber Security</h4>
-                    <p>Network Security, Penetration Testing, Vulnerability Assessment</p>
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card shadow border-0 h-100 text-center p-4">
-                <div class="card-body">
-                   
-                    <h4>Power BI</h4>
-                    <p>Business Intelligence, Data Visualization, Reporting</p>
-                </div>
-            </div>
-        </div>
-
-
     </div>
-
-</div> -->
-
-
-<section class="container py-5">
-	<h2 class="section-title text-center mb-4">Our Services</h2>
-	<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-		{% if services %}
-			{% for service in services %}
-			<div class="col" data-aos="flip-up">
-				<div class="service-card p-4 h-100 text-center">
-					<i class="bi {{ service.icon }} fs-1 mb-3"></i>
-					<h4>{{ service.title }}</h4>
-					<p>{{ service.description }}</p>
-				</div>
-			</div>
-			{% endfor %}
-		{% else %}
-			<div class="col" data-aos="flip-up">
-				<div class="service-card p-4 h-100 text-center">
-					<i class="bi bi-code-slash fs-1 mb-3"></i>
-					<h4>Web Development</h4>
-                    <p>Django, HTML, CSS, Bootstrap, JavaScript</p>>
-				</div>
-			</div>
-			<div class="col" data-aos="flip-up">
-				<div class="service-card p-4 h-100 text-center">
-					<i class="bi bi-phone fs-1 mb-3"></i>
-					<h4>Mobile App Development</h4>
-                    <p>Android & iOS Applications using Flutter and React Native</p>
-				</div>
-			</div>
-			
-            <div class="col" data-aos="flip-up">
-                <div class="service-card p-4 h-100 text-center">
-					<i class="bi bi-shield-lock fs-1 mb-3"></i>
-					
-                     <h4>Cyber Security</h4>
-                    <p>Network Security, Penetration Testing, Vulnerability Assessment</p>
-				</div>
-			</div>
-            <div class="col" data-aos="flip-up">
-                <div class="service-card p-4 h-100 text-center">
-					<i class="bi bi-bar-chart fs-1 mb-3"></i>
-					 <h4>Power BI</h4>
-                    <p>Business Intelligence, Data Visualization, Reporting</p>
-                    
-				</div>
-			</div>
-            <div class="col" data-aos="flip-up">
-                <div class="service-card p-4 h-100 text-center">
-					<i class="bi bi-graph-up fs-1 mb-3"></i>
-					 <h4>Digital Marketing</h4>
-                    <p>SEO, Social Media Marketing, Branding & Advertising</p>
-                    
-				</div>
-			</div>
-
-
-             
-		{% endif %}
-	</div>
 </section>
-
 {% endblock %}
-
-
-

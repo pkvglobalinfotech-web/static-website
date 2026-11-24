@@ -1,63 +1,153 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}Contact &amp; Enquiries | {{ company.company_name|default:"PKV Global Infotech" }}{% endblock %}
 
 {% block content %}
+<section class="container py-5">
+    <div class="row g-5 align-items-start">
+        <!-- Contact Sidebar -->
+        <div class="col-lg-5">
+            <span class="text-primary text-uppercase fw-semibold small tracking-wide">Direct Communication</span>
+            <h1 class="display-6 fw-bold text-white mt-1 mb-3">Discuss Your Requirement</h1>
+            <p class="text-secondary small mb-4" style="line-height: 1.7;">
+                Reach out to discuss our upcoming healthcare, HR, and ERP products, or to request custom website development, API integrations, and ongoing IT support.
+            </p>
 
-<section class="container py-5 mt-5">
-	<div class="row g-4 align-items-start">
-		<div class="col-lg-5" data-aos="fade-right">
-			<h1 class="fw-bold">Contact Us</h1>
-			<p class="lead text-muted">Have a project or question? Send us a message and we'll get back within 1-2 business days.</p>
+            <div class="card p-4 border-0 mb-4" style="background-color: #0f1b35; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 16px;">
+                <h5 class="text-white fw-bold mb-3">Direct Contact</h5>
+                
+                <p class="small text-secondary mb-2">
+                    <i class="bi bi-envelope-fill text-danger me-2"></i>
+                    <strong class="text-light">Email:</strong> {{ company.email|default:"contact@pkvglobalinfotech.com" }}
+                </p>
 
-			<div class="card mb-4 shadow-sm rounded-4 border-0">
-				<div class="card-body">
-					<h5 class="mb-3">Get in touch</h5>
-					<p class="mb-2"><strong>Phone:</strong> +91 90000 00000</p>
-					<p class="mb-2"><strong>Email:</strong> pkvglobalinfotech@gmail.com</p>
-					<p class="mb-0"><strong>Hours:</strong> Mon–Fri, 9am–6pm</p>
-				</div>
-			</div>
+                {% if company.phone %}
+                <p class="small text-secondary mb-2">
+                    <i class="bi bi-telephone-fill text-success me-2"></i>
+                    <strong class="text-light">Phone:</strong> {{ company.phone }}
+                </p>
+                {% endif %}
 
-			<div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm">
-				<iframe 
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3882.573291881112!2d79.86910877359558!3d13.314574507269116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a529dad50027017%3A0x55c71da9a10fdd8d!2sPKV%20GLOBAL%20INFOTECH%20PVT%20LTD!5e0!3m2!1sen!2sin!4v1785413213274!5m2!1sen!2sin"
-					style="border:0;"
-					allowfullscreen=""
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade">
-				</iframe>
-			</div>
-		</div>
+                {% if company.address %}
+                <p class="small text-secondary mb-2">
+                    <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                    <strong class="text-light">Location:</strong> {{ company.address }}
+                </p>
+                {% endif %}
 
-		<div class="col-lg-7" data-aos="fade-left">
-			{% if messages %}
-				{% for message in messages %}
-					<div class="alert alert-{{ message.tags }} rounded-4">{{ message }}</div>
-				{% endfor %}
-			{% endif %}
+                {% if company.business_hours %}
+                <p class="small text-secondary mb-0">
+                    <i class="bi bi-clock-fill text-warning me-2"></i>
+                    <strong class="text-light">Operating Hours:</strong> {{ company.business_hours }}
+                </p>
+                {% endif %}
+            </div>
 
-			<div class="card p-4 shadow-sm rounded-4 border-0">
-				<h4 class="mb-4">Send a Message</h4>
-				<form method="post" class="contact-form">
-					{% csrf_token %}
-					{{ form.non_field_errors }}
-					{{ form.as_p }}
-					<button type="submit" class="btn btn-primary mt-3 px-4">Send Message</button>
-				</form>
-			</div>
-		</div>
-	</div>
+            <!-- Google Map -->
+            <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm" style="border: 1px solid rgba(255,255,255,0.08);">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3882.573291881112!2d79.86910877359558!3d13.314574507269116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a529dad50027017%3A0x55c71da9a10fdd8d!2sPKV%20GLOBAL%20INFOTECH%20PVT%20LTD!5e0!3m2!1sen!2sin!4v1785413213274!5m2!1sen!2sin"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Enquiry Form -->
+        <div class="col-lg-7">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success border-0 shadow-sm rounded-4 p-4 mb-4" role="alert" style="background-color: #198754; color: white;">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-check-circle-fill fs-3 me-3"></i>
+                            <div>
+                                <h5 class="alert-heading mb-1">Message Sent</h5>
+                                <p class="mb-0 small">{{ message }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="card p-4 p-md-5 border-0" style="background-color: #0f1b35; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 16px;">
+                <h3 class="text-white fw-bold mb-1">Send an Enquiry</h3>
+                <p class="text-secondary small mb-4">Please provide details about your project or service requirement.</p>
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger mb-4">
+                        {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Topic / Selection -->
+                    <div class="mb-3">
+                        <label for="{{ form.topic.id_for_label }}" class="form-label text-light small fw-medium">
+                            Area of Interest / Topic <span class="text-danger">*</span>
+                        </label>
+                        {{ form.topic }}
+                        {% if form.topic.errors %}
+                        <div class="text-danger small mt-1">{{ form.topic.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <label for="{{ form.name.id_for_label }}" class="form-label text-light small fw-medium">
+                            Full Name <span class="text-danger">*</span>
+                        </label>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                        <div class="text-danger small mt-1">{{ form.name.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <!-- Email -->
+                        <div class="col-md-6">
+                            <label for="{{ form.email.id_for_label }}" class="form-label text-light small fw-medium">
+                                Email Address <span class="text-danger">*</span>
+                            </label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                            <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="col-md-6">
+                            <label for="{{ form.phone.id_for_label }}" class="form-label text-light small fw-medium">
+                                Contact Phone <span class="text-secondary small">(optional)</span>
+                            </label>
+                            {{ form.phone }}
+                            {% if form.phone.errors %}
+                            <div class="text-danger small mt-1">{{ form.phone.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="mb-4">
+                        <label for="{{ form.message.id_for_label }}" class="form-label text-light small fw-medium">
+                            Requirement Details <span class="text-danger">*</span>
+                        </label>
+                        {{ form.message }}
+                        {% if form.message.errors %}
+                        <div class="text-danger small mt-1">{{ form.message.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-medium w-100">
+                        Submit Enquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
-
-<script>
-	// Add Bootstrap classes to form widgets rendered by Django's default widgets
-	(function(){
-		const form = document.querySelector('form.contact-form');
-		if (!form) return;
-		form.querySelectorAll('input, textarea, select').forEach(el => el.classList.add('form-control'));
-		form.querySelectorAll('label').forEach(l => l.classList.add('form-label'));
-	})();
-</script>
-
 {% endblock %}

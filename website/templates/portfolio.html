@@ -1,78 +1,89 @@
 {% extends 'base.html' %}
-
-{% block title %}Portfolio{% endblock %}
-
-{% block content %}
 {% load static %}
 
-<section class="portfolio-section py-5" id="portfolio">
-    <div class="container">
+{% block title %}Products &amp; Software Solutions | {{ company.company_name|default:"PKV Global Infotech" }}{% endblock %}
 
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="portfolio-subtitle">Our Work</span>
-            <h2 class="portfolio-title">
-                Latest <span>Portfolio</span>
-            </h2>
-
-            <p class="portfolio-text">
-                Explore our latest web development, software solutions,
-                UI/UX designs and digital products.
+{% block content %}
+<section class="py-5" style="background-color: #0a192f;">
+    <div class="container py-4">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <span class="text-primary text-uppercase fw-semibold small tracking-wide">Software Catalogue</span>
+            <h1 class="display-5 fw-bold text-white mt-1">Digital Products &amp; Solutions</h1>
+            <p class="text-secondary mx-auto" style="max-width: 680px;">
+                Specialised healthcare, human resources, and enterprise software suites engineered for modern business operations.
             </p>
         </div>
 
-        <div class="row">
-
-            {% for project in projects %}
-
-            <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:'100' }}">
-
-                <div class="portfolio-card">
-
-                    <div class="portfolio-img">
-
-                        <img src="{{ project.image.url }}" class="img-fluid" alt="{{ project.title }}">
-
-                        <div class="portfolio-overlay">
-
-                            <a href="{{ project.image.url }}" target="_blank" class="view-btn">
-                                <i class="fas fa-search-plus"></i>
-                            </a>
-
-                        </div>
-
+        <!-- Products Grid -->
+        <div class="row g-4">
+            {% for product in products %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 p-4 d-flex flex-column" style="background-color: #0f1b35; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 16px;">
+                    <!-- Development Stage Badge -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge {% if product.stage == 'ready_to_demo' %}bg-success{% elif product.stage == 'live' %}bg-info text-dark{% else %}bg-primary{% endif %} px-3 py-2 rounded-pill small">
+                            <i class="bi bi-gear-wide-connected me-1"></i>{{ product.get_stage_display }}
+                        </span>
+                        {% if product.technology %}
+                        <span class="text-secondary small fw-medium">{{ product.technology }}</span>
+                        {% endif %}
                     </div>
 
-                    <div class="portfolio-content">
+                    <!-- Optional Screenshot -->
+                    {% if product.image %}
+                    <div class="mb-3 rounded overflow-hidden">
+                        <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.title }}">
+                    </div>
+                    {% endif %}
 
-                        <span>{{ project.technology }}</span>
+                    <!-- Title & Subtitle -->
+                    <h3 class="h4 text-white fw-bold mb-2">{{ product.title }}</h3>
+                    {% if product.subtitle %}
+                    <h6 class="text-secondary small mb-3">{{ product.subtitle }}</h6>
+                    {% endif %}
 
-                        <h4>{{ project.title }}</h4>
+                    <!-- Description -->
+                    <p class="text-light small mb-4 opacity-75" style="line-height: 1.7;">
+                        {{ product.description }}
+                    </p>
 
-                        <p>{{ project.description|truncatewords:18 }}</p>
+                    <!-- Module Breakdown -->
+                    {% if product.get_modules_list %}
+                    <div class="mb-4 mt-auto">
+                        <h6 class="text-uppercase small fw-bold text-secondary mb-2" style="font-size: 0.75rem; letter-spacing: 0.5px;">
+                            Modules &amp; Functional Scope:
+                        </h6>
+                        <ul class="list-unstyled mb-0 small text-light">
+                            {% for module in product.get_modules_list %}
+                            <li class="mb-2 d-flex align-items-start">
+                                <i class="bi bi-check2 text-primary me-2 mt-1"></i>
+                                <span>{{ module }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
 
-                        <a href="#" class="read-btn">
-                            View Project
-                            <i class="fas fa-arrow-right"></i>
+                    <!-- Actions -->
+                    <div class="pt-3 border-top border-secondary border-opacity-25 mt-auto d-flex flex-wrap gap-2">
+                        <a href="/contact/?topic={{ product.title|urlencode }}" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 flex-grow-1">
+                            Enquire About This Product
                         </a>
-
+                        {% if product.live_demo %}
+                        <a href="{{ product.live_demo }}" target="_blank" rel="noopener" class="btn btn-success btn-sm rounded-pill px-3 py-2">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>View Demo
+                        </a>
+                        {% endif %}
                     </div>
-
                 </div>
-
             </div>
-
             {% empty %}
-
-            <div class="col-12 text-center">
-
-                <h4>Projects Coming Soon</h4>
-
+            <div class="col-12 text-center py-5">
+                <p class="text-secondary">No products configured yet.</p>
             </div>
-
             {% endfor %}
-
         </div>
-
     </div>
 </section>
 {% endblock %}

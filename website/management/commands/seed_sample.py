@@ -1,86 +1,162 @@
-import os
-import base64
-from pathlib import Path
-
 from django.core.management.base import BaseCommand
-from django.conf import settings
+from website.models import CompanySetting, Service, Project
 
 
 class Command(BaseCommand):
-    help = 'Create or clear sample content and lightweight placeholder files.'
+    help = 'Create PKV Global Infotech default products, services, and company settings if not already present. Preserves staff edits on re-run.'
 
     def add_arguments(self, parser):
-        parser.add_argument('--create', action='store_true', help='Create sample content')
-        parser.add_argument('--clear', action='store_true', help='Clear sample content')
+        parser.add_argument('--create', action='store_true', help='Seed initial company data, products, and services without overwriting staff edits')
+        parser.add_argument('--clear', action='store_true', help='Clear sample products and services (destructive)')
 
     def handle(self, *args, **options):
-        base = Path(settings.BASE_DIR)
-
-        projects_dir = base / 'projects'
-        blogs_dir = base / 'blogs'
-        projects_dir.mkdir(exist_ok=True)
-        blogs_dir.mkdir(exist_ok=True)
-
-        # tiny 1x1 PNG (transparent)
-        png_b64 = (
-            'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII='
-        )
-        png_data = base64.b64decode(png_b64)
-
-        files = {
-            projects_dir / 'placeholder1.png': png_data,
-            projects_dir / 'placeholder2.png': png_data,
-            blogs_dir / 'blog1.png': png_data,
-        }
-
-        if options['create']:
-            for path, data in files.items():
-                with open(path, 'wb') as f:
-                    f.write(data)
-            self.stdout.write(self.style.SUCCESS('Wrote placeholder files'))
-
-            # create sample DB entries
-            from django.contrib.auth.models import User
-            from website.models import Service, Project, Blog, Testimonial
-
-            user, _ = User.objects.get_or_create(username='sampleuser', defaults={'email': 'sample@example.com'})
-
-            Service.objects.get_or_create(title='Sample Service 1', defaults={'description': 'Placeholder service 1'})
-            Service.objects.get_or_create(title='Sample Service 2', defaults={'description': 'Placeholder service 2'})
-            Service.objects.get_or_create(title='Sample Service 3', defaults={'description': 'Placeholder service 3'})
-
-            p1, _ = Project.objects.get_or_create(title='Sample Project 1', defaults={'description': 'Demo project', 'technology': 'Django'})
-            p2, _ = Project.objects.get_or_create(title='Sample Project 2', defaults={'description': 'Demo project 2', 'technology': 'Django'})
-
-            # point image paths at created files (these are relative paths used by ImageField)
-            p1.image = 'projects/placeholder1.png'
-            p1.save()
-            p2.image = 'projects/placeholder2.png'
-            p2.save()
-
-            b1, _ = Blog.objects.get_or_create(title='Sample Blog 1', defaults={'content': 'Demo blog post', 'author': user})
-            b1.image = 'blogs/blog1.png'
-            b1.save()
-
-            Testimonial.objects.get_or_create(name='Sample Tester', defaults={'company': 'Example Co', 'message': 'Great work!'})
-
-            self.stdout.write(self.style.SUCCESS('Sample DB entries created'))
-
         if options['clear']:
-            # delete files
-            for path in files.keys():
-                try:
-                    os.remove(path)
-                except FileNotFoundError:
-                    pass
-            self.stdout.write(self.style.SUCCESS('Placeholder files removed'))
+            Project.objects.all().delete()
+            Service.objects.all().delete()
+            self.stdout.write(self.style.SUCCESS('Cleared products and services.'))
+            return
 
-            # delete DB entries seeded by this command
-            from website.models import Project, Blog, Service, Testimonial
+        # 1. Company Settings: create default only if none exists; preserve staff edits
+        company = CompanySetting.objects.first()
+        if not company:
+            company = CompanySetting.objects.create(
+                company_name="PKV Global Infotech Pvt Ltd",
+                headline="Build Digital Products That Scale",
+                supporting_text=(
+                    "PKV Global Infotech develops hospital software, HR applications, and multi-module ERP solutions. "
+                    "We also help businesses build and maintain websites, connect their software systems, and get ongoing IT support."
+                ),
+                email="contact@pkvglobalinfotech.com",
+                phone="",
+                address="Chennai, Tamil Nadu, India",
+                business_hours="",
+            )
+            self.stdout.write(self.style.SUCCESS('Created default Company Settings.'))
+        else:
+            self.stdout.write(self.style.NOTICE('Company Settings already exist; preserving staff edits.'))
 
-            Project.objects.filter(title__startswith='Sample').delete()
-            Blog.objects.filter(title__startswith='Sample').delete()
-            Service.objects.filter(title__startswith='Sample Service').delete()
-            Testimonial.objects.filter(name='Sample Tester').delete()
+        # 2. Products: all unconfirmed capabilities set to 'In Development'
+        products_data = [
+            {
+                'title': 'Hospital Software / Hospital ERP',
+                'subtitle': 'Healthcare Operations & Clinical Management Suite',
+                'technology': 'Django, Python & PostgreSQL',
+                'description': (
+                    'Specialised software for hospital operations and clinical care workflows, '
+                    'designed to streamline patient handling, medical recordkeeping, and operational billing.'
+                ),
+                'modules': (
+                    'Patient Registration & Queue Scheduling (In Development)\n'
+                    'Outpatient (OP) & Inpatient (IP) Billing (In Development)\n'
+                    'Pharmacy & Medication Dispensing (In Development)\n'
+                    'Inventory & Consumables Control (In Development)\n'
+                    'Clinical Records & Doctor Notes (In Development)'
+                ),
+                'stage': 'in_development',
+                'order': 1,
+                'is_active': True,
+                'live_demo': '',
+            },
+            {
+                'title': 'HR Applications',
+                'subtitle': 'Employee Records & Workflow Automation',
+                'technology': 'Python, Modern Web & Role-Based Access',
+                'description': (
+                    'Dedicated applications for employee records and HR workflows. '
+                    'Built to reduce repetitive human-resource administration and standardize internal requests.'
+                ),
+                'modules': (
+                    'Employee Master Records & Digital Profiles (In Development)\n'
+                    'Attendance & Leave Approval Workflows (In Development)\n'
+                    'Payroll Calculation & Payslip Export (In Development)\n'
+                    'Performance & Review Cycles (Planned)\n'
+                    'Recruitment Pipeline & Candidate Onboarding (Planned)'
+                ),
+                'stage': 'in_development',
+                'order': 2,
+                'is_active': True,
+                'live_demo': '',
+            },
+            {
+                'title': 'Multi-module ERP',
+                'subtitle': 'Modular Enterprise Operations Connector',
+                'technology': 'Modular Architecture & Secure APIs',
+                'description': (
+                    'Business software that connects functions such as HR, inventory, purchasing, '
+                    'finance, and multi-tier approvals into a unified, extensible architecture.'
+                ),
+                'modules': (
+                    'Human Resources & Workforce Management (In Development)\n'
+                    'Inventory & Warehouse Stock Tracking (In Development)\n'
+                    'Purchasing & Supplier Purchase Orders (In Development)\n'
+                    'Financial Accounting & Invoicing (In Development)\n'
+                    'Multi-level Approval Workflows (In Development)'
+                ),
+                'stage': 'in_development',
+                'order': 3,
+                'is_active': True,
+                'live_demo': '',
+            },
+        ]
 
-            self.stdout.write(self.style.SUCCESS('Sample DB entries cleared'))
+        for p_data in products_data:
+            obj, created = Project.objects.get_or_create(
+                title=p_data['title'],
+                defaults=p_data
+            )
+            if created:
+                self.stdout.write(self.style.SUCCESS(f'Created product: {obj.title}'))
+            else:
+                self.stdout.write(self.style.NOTICE(f'Product already exists; preserving staff edits: {obj.title}'))
+
+        # 3. IT Services: create if not existing; preserve staff edits
+        services_data = [
+            {
+                'title': 'Website Design & Development',
+                'icon': 'bi-laptop',
+                'description': 'Create new company websites and business web applications tailored to your brand and technical requirements.',
+                'support_hours': '',
+                'response_commitment': '',
+                'order': 1,
+                'is_active': True,
+            },
+            {
+                'title': 'Website Maintenance',
+                'icon': 'bi-tools',
+                'description': 'Update content, fix issues, and maintain existing websites, including sites the customer already owns.',
+                'support_hours': '',
+                'response_commitment': '',
+                'order': 2,
+                'is_active': True,
+            },
+            {
+                'title': 'Software & API Integration',
+                'icon': 'bi-diagram-3',
+                'description': 'Connect existing applications, ERP modules, and third-party systems so agreed data can move smoothly between them.',
+                'support_hours': '',
+                'response_commitment': '',
+                'order': 3,
+                'is_active': True,
+            },
+            {
+                'title': 'IT Support & Application Maintenance',
+                'icon': 'bi-headset',
+                'description': 'Troubleshoot application issues and deliver agreed fixes and enhancements to keep your systems running reliably.',
+                'support_hours': '',
+                'response_commitment': '',
+                'order': 4,
+                'is_active': True,
+            },
+        ]
+
+        for s_data in services_data:
+            obj, created = Service.objects.get_or_create(
+                title=s_data['title'],
+                defaults=s_data
+            )
+            if created:
+                self.stdout.write(self.style.SUCCESS(f'Created service: {obj.title}'))
+            else:
+                self.stdout.write(self.style.NOTICE(f'Service already exists; preserving staff edits: {obj.title}'))
+
+        self.stdout.write(self.style.SUCCESS('PKV Global Infotech seed check completed.'))

@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local environment & secrets
+.env
+.env.*
+!.env.example
+
+# Local SQLite Database
+*.sqlite3
+db.sqlite3
+
+# Virtual environments
+venv/
+.venv/
+.venv_mac/
+env/
+ENV/
+
+# Static collection & media uploads
+staticfiles/
+media/
+
+# OS specific files
+.DS_Store
+Thumbs.db

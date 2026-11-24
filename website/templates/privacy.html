@@ -1,121 +1,78 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Privacy Policy{% endblock %}
+{% block title %}Privacy Policy | {{ company.company_name|default:"PKV Global Infotech" }}{% endblock %}
 
 {% block content %}
-
-<section class="py-5 bg-dark text-light">
-    <div class="container">
+<section class="py-5" style="background-color: #0a192f;">
+    <div class="container py-4">
         <div class="text-center mb-5">
-            <h1 class="fw-bold">Privacy Policy</h1>
-            <p class="text-light">
-                Last Updated: August 2026
-            </p>
+            <span class="text-primary text-uppercase fw-semibold small tracking-wide">Legal &amp; Data Protection</span>
+            <h1 class="display-5 fw-bold text-white mt-1">Privacy Policy</h1>
+            <p class="text-secondary small">Last Updated: November 2026</p>
         </div>
 
-        <div class="card shadow border-0 p-5">
-
-            <h3>1. Introduction</h3>
-
-            <p>
-                Welcome to <strong>PKV Global Infotech</strong>.
-                Your privacy is important to us. This Privacy Policy explains how
-                we collect, use, store, and protect your personal information when
-                you use our website and services.
+        <div class="card p-4 p-md-5 border-0 shadow-sm" style="background-color: #0f1b35; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 16px; color: #e2e8f0;">
+            <h3 class="h4 text-white fw-bold mb-3">1. Introduction</h3>
+            <p class="small text-light opacity-75 mb-4" style="line-height: 1.7;">
+                Welcome to <strong>{{ company.company_name|default:"PKV Global Infotech Pvt Ltd" }}</strong>.
+                We value your privacy and are committed to protecting any information you share with us when visiting our website or communicating with our team regarding our software products and IT services.
             </p>
 
-            <hr>
+            <hr class="border-secondary opacity-25 my-4">
 
-            <h3>2. Information We Collect</h3>
-
-            <ul>
-                <li>Name</li>
-                <li>Email Address</li>
-                <li>Phone Number</li>
-                <li>Company Name</li>
-                <li>Project Requirements</li>
-                <li>IP Address</li>
-                <li>Browser Information</li>
-                <li>Cookies & Analytics Data</li>
+            <h3 class="h4 text-white fw-bold mb-3">2. Information We Collect</h3>
+            <p class="small text-light opacity-75 mb-2" style="line-height: 1.7;">
+                When you submit an enquiry through our website, we collect information you voluntarily provide:
+            </p>
+            <ul class="small text-light opacity-75 mb-4">
+                <li>Full Name and Company or Organization name</li>
+                <li>Email address and optional contact telephone number</li>
+                <li>Area of interest (product or IT service) and project requirement details</li>
             </ul>
 
-            <hr>
+            <hr class="border-secondary opacity-25 my-4">
 
-            <h3>3. How We Use Your Information</h3>
-
-            <p>We use collected information to:</p>
-
-            <ul>
-                <li>Provide requested services</li>
-                <li>Improve website performance</li>
-                <li>Respond to inquiries</li>
-                <li>Send project updates</li>
-                <li>Improve customer support</li>
-                <li>Enhance security</li>
+            <h3 class="h4 text-white fw-bold mb-3">3. How We Use Collected Information</h3>
+            <p class="small text-light opacity-75 mb-2" style="line-height: 1.7;">
+                Information submitted through our enquiry form is strictly used to:
+            </p>
+            <ul class="small text-light opacity-75 mb-4">
+                <li>Review your software or IT service requirements and respond to your enquiry</li>
+                <li>Provide requested product updates or technical demonstrations</li>
+                <li>Maintain operational records of communications in our database</li>
             </ul>
 
-            <hr>
+            <hr class="border-secondary opacity-25 my-4">
 
-            <h3>4. Cookies</h3>
-
-            <p>
-                Our website uses cookies to improve your browsing experience.
-                Cookies help us remember user preferences and analyze website traffic.
+            <h3 class="h4 text-white fw-bold mb-3">4. Data Security &amp; Retention</h3>
+            <p class="small text-light opacity-75 mb-4" style="line-height: 1.7;">
+                We maintain appropriate administrative and technical safeguards to protect your personal information from unauthorized access, alteration, or disclosure. We do not sell, rent, or lease your personal information to third parties.
             </p>
 
-            <hr>
+            <hr class="border-secondary opacity-25 my-4">
 
-            <h3>5. Data Security</h3>
-
-            <p>
-                We implement industry-standard security measures to protect your
-                personal information from unauthorized access, disclosure,
-                alteration, or destruction.
+            <h3 class="h4 text-white fw-bold mb-3">5. Contact Information</h3>
+            <p class="small text-light opacity-75 mb-2" style="line-height: 1.7;">
+                If you have questions about this Privacy Policy or how your data is handled, please contact our team:
             </p>
-
-            <hr>
-
-            <h3>6. Third-Party Services</h3>
-
-            <p>
-                We may use trusted third-party providers such as payment gateways,
-                hosting providers, analytics services, and email services.
-                These providers maintain their own privacy policies.
+            <p class="small text-light mb-1">
+                <i class="bi bi-envelope-fill text-danger me-2"></i>
+                <strong>Email:</strong> {{ company.email|default:"contact@pkvglobalinfotech.com" }}
             </p>
-
-            <hr>
-
-            <h3>7. Your Rights</h3>
-
-            <ul>
-                <li>Access your data</li>
-                <li>Update your information</li>
-                <li>Request deletion</li>
-                <li>Withdraw consent</li>
-                <li>Request a copy of your data</li>
-            </ul>
-
-            <hr>
-
-            <h3>8. Contact Us</h3>
-
-            <p>
-                Email:
-                <strong>pkvglobalinfotech@gmail.com</strong>
+            {% if company.phone %}
+            <p class="small text-light mb-1">
+                <i class="bi bi-telephone-fill text-success me-2"></i>
+                <strong>Phone:</strong> {{ company.phone }}
             </p>
-
-            <p>
-                Phone:
-                <strong>+91 XXXXX XXXXX</strong>
+            {% endif %}
+            {% if company.address %}
+            <p class="small text-light mb-0">
+                <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                <strong>Location:</strong> {{ company.address }}
             </p>
-
-            <p>
-                We will respond within 48 hours.
-            </p>
-
+            {% endif %}
         </div>
     </div>
 </section>
-
 {% endblock %}

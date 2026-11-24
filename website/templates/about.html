@@ -1,30 +1,62 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}About{% endblock %}
+{% block title %}About Us | {{ company.company_name|default:"PKV Global Infotech" }}{% endblock %}
 
 {% block content %}
-<section class="container py-5 mt-5">
-    <div class="row align-items-center g-5">
-        <div class="col-lg-6" data-aos="fade-right">
-            <h1 class="fw-bold mb-3">About PKV Global Infotech</h1>
-            <p class="lead text-muted">
-                We create modern digital products that help startups and businesses grow with confidence.
-            </p>
-            <p>
-                From custom websites and mobile apps to cloud solutions and business intelligence, our team delivers practical technology that is both elegant and reliable.
-            </p>
-            <p>
-                Our mission is to make technology simple, scalable, and measurable for every client we serve.
-            </p>
-        </div>
-        <div class="col-lg-6" data-aos="fade-left">
-            <div class="card shadow border-0 p-4">
-                <h4 class="mb-3">Why clients choose us</h4>
-                <ul class="list-unstyled mb-0">
-                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Fast, responsive development</li>
-                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Transparent communication and support</li>
-                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Solutions built for real business growth</li>
-                </ul>
+<section class="py-5" style="background-color: #0a192f;">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="text-primary text-uppercase fw-semibold small tracking-wide">Company Background</span>
+                <h1 class="display-5 fw-bold text-white mt-1 mb-4">About PKV Global Infotech</h1>
+                <p class="lead text-light mb-4" style="line-height: 1.8; opacity: 0.9;">
+                    PKV Global Infotech is a newly established digital product development and IT services company based in Tamil Nadu, India.
+                </p>
+                <p class="text-secondary small mb-3" style="line-height: 1.7;">
+                    Our product engineering division focuses on developing specialised domain software — including Hospital Information Management systems, Human Resource platforms, and multi-module ERP software designed to connect core business workflows.
+                </p>
+                <p class="text-secondary small mb-4" style="line-height: 1.7;">
+                    In parallel, our IT services team works directly with businesses to design and deploy modern websites, maintain existing web assets, build secure API integrations between business tools, and provide ongoing application maintenance.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="/products/" class="btn btn-primary rounded-pill px-4 py-2">
+                        View Products
+                    </a>
+                    <a href="/services/" class="btn btn-outline-light rounded-pill px-4 py-2">
+                        Explore IT Services
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card p-4 p-md-5 border-0 shadow-sm" style="background-color: #0f1b35; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 16px;">
+                    <h4 class="text-white fw-bold mb-4">Our Core Approach</h4>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-4 d-flex">
+                            <i class="bi bi-check-circle-fill text-primary fs-5 me-3 flex-shrink-0"></i>
+                            <div>
+                                <strong class="text-white d-block">Transparent Development</strong>
+                                <span class="text-secondary small">We publish clear development stages and intended functional scope for our products rather than marketing unbuilt claims.</span>
+                            </div>
+                        </li>
+                        <li class="mb-4 d-flex">
+                            <i class="bi bi-check-circle-fill text-primary fs-5 me-3 flex-shrink-0"></i>
+                            <div>
+                                <strong class="text-white d-block">End-to-End System Care</strong>
+                                <span class="text-secondary small">From designing new web applications to maintaining sites clients already own and connecting distinct third-party APIs.</span>
+                            </div>
+                        </li>
+                        <li class="d-flex">
+                            <i class="bi bi-check-circle-fill text-primary fs-5 me-3 flex-shrink-0"></i>
+                            <div>
+                                <strong class="text-white d-block">Direct Technical Communication</strong>
+                                <span class="text-secondary small">You collaborate directly with engineers who understand codebases, database models, and operational integrations.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
