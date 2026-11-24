@@ -675,10 +675,6 @@ body small,
 body strong,
 body em,
 body button,
-body input,
-body textarea,
-body select,
-body option,
 body .nav-link,
 body .section-title,
 body .service-card,
@@ -694,6 +690,49 @@ body .coming-soon-card,
 body .portfolio-item .overlay,
 body .testimonial-card small {
     color:#ffffff !important;
+}
+
+/* ==============================
+   Form Controls (Crisp, High-Contrast Text)
+================================= */
+.form-control,
+.form-select,
+input.form-control,
+textarea.form-control,
+select.form-select,
+body input.form-control,
+body textarea.form-control,
+body select.form-select,
+body .form-control,
+body .form-select {
+    color: #0f172a !important;
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+body .form-control:focus,
+body .form-select:focus {
+    color: #0f172a !important;
+    background-color: #ffffff !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25) !important;
+}
+
+.form-control::placeholder,
+textarea.form-control::placeholder,
+body .form-control::placeholder,
+body textarea.form-control::placeholder {
+    color: #64748b !important;
+    opacity: 0.85;
+}
+
+select.form-select option,
+.form-select option,
+body select option {
+    color: #0f172a !important;
+    background-color: #ffffff !important;
 }
 
 .btn,
