@@ -1,118 +1,80 @@
-    const counters=document.querySelectorAll(".counter");
-
-
-counters.forEach(counter=>{
-
-
-let value=0;
-
-
-let target=parseInt(counter.innerText);
-
-
-
-let interval=setInterval(()=>{
-
-
-value++;
-
-
-counter.innerText=value;
-
-
-
-if(value==target)
-
-{
-
-clearInterval(interval);
-
-}
-
-
-
-},30);
-
-
-
-});
-
-AOS.init({
-    duration:1000,
-    once:true
-});
-
-new Swiper(".swiper",
-{
-
-slidesPerView:3,
-
-spaceBetween:20,
-
-
-autoplay:
-{
-
-delay:2000
-
-}
-
-
-});
-
-window.onscroll = function () {
-    document.getElementById("topBtn").style.display =
-        window.scrollY > 300 ? "block" : "none";
-};
-
-document.getElementById("topBtn").onclick = function () {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-};
-
-const topBtn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", function () {
-    if (window.pageYOffset > 300) {
-        topBtn.style.display = "block";
-    } else {
-        topBtn.style.display = "none";
+// Counter Animation (null-safe)
+document.addEventListener("DOMContentLoaded", function () {
+    const counters = document.querySelectorAll(".counter");
+    if (counters.length > 0) {
+        counters.forEach(counter => {
+            let target = parseInt(counter.innerText) || 0;
+            let value = 0;
+            if (target > 0) {
+                let interval = setInterval(() => {
+                    value++;
+                    counter.innerText = value;
+                    if (value >= target) {
+                        clearInterval(interval);
+                    }
+                }, 30);
+            }
+        });
     }
-});
 
-topBtn.addEventListener("click", function () {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
+    // Scroll-to-Top Button (null-safe)
+    const topBtn = document.getElementById("topBtn");
+    if (topBtn) {
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+                topBtn.style.display = "block";
+            } else {
+                topBtn.style.display = "none";
+            }
+        });
 
-new Swiper(".testimonialSwiper", {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    loop: true,
+        topBtn.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
 
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-    },
+    // AOS Animation Guard
+    if (typeof AOS !== "undefined") {
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    }
 
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
+    // Swiper Guard
+    if (typeof Swiper !== "undefined") {
+        if (document.querySelector(".swiper")) {
+            new Swiper(".swiper", {
+                slidesPerView: 3,
+                spaceBetween: 20,
+                autoplay: {
+                    delay: 2000
+                }
+            });
+        }
 
-    breakpoints: {
-        0: {
-            slidesPerView: 1,
-        },
-        768: {
-            slidesPerView: 2,
-        },
-        992: {
-            slidesPerView: 3,
+        if (document.querySelector(".testimonialSwiper")) {
+            new Swiper(".testimonialSwiper", {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
+                },
+                breakpoints: {
+                    0: { slidesPerView: 1 },
+                    768: { slidesPerView: 2 },
+                    992: { slidesPerView: 3 }
+                }
+            });
         }
     }
 });
