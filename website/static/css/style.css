@@ -101,7 +101,10 @@ button, input, textarea, select {
 }
 
 .navbar-brand img {
-    max-height:50px;
+    height: 64px;
+    max-height: 64px;
+    width: auto;
+    object-fit: contain;
 }
 
 .navbar-toggler {
@@ -635,7 +638,7 @@ img{max-width:100%;height:auto;display:block;}
 
 @media (max-width:767px){
     body{padding-top:64px;}
-    .navbar-brand img{width:80px;height:auto;}
+    .navbar-brand img{height:52px;max-height:52px;width:auto;}
     .hero{text-align:center;padding-top:2rem;}
     .hero h1{font-size:2.1rem;}
     .hero .lead{margin:0 auto 1rem;}
@@ -1132,20 +1135,21 @@ font-size:34px;
 }
 
 .logo{
-    width:100%;
-    max-width:150px;
+    width:auto;
+    max-width:100%;
     height:auto;
     display:block;
 }
 
 .navbar-brand img{
-    width:150px;
-    max-width:100%;
-    height: 100px;
-    transition:0.3s ease;
+    height: 64px;
+    max-height: 64px;
+    width: auto;
+    object-fit: contain;
+    transition: 0.3s ease;
 }
 
 .navbar-brand img:hover{
-    transform:scale(1.05);
+    transform:scale(1.04);
 }
 
