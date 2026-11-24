@@ -186,13 +186,19 @@ class WebsiteTests(TestCase):
         self.assertEqual(enquiry.status, 'new')
         self.assertTrue(enquiry.email_sent)
 
-        # Email dispatch verification: Configured sender, monitored inbox, visitor Reply-To
-        self.assertEqual(len(mail.outbox), 1)
+        # Email dispatch verification: Configured sender, monitored inbox, visitor Reply-To, and auto-reply
+        self.assertEqual(len(mail.outbox), 2)
         sent_email = mail.outbox[0]
         self.assertIn("Hospital Software / Hospital ERP", sent_email.subject)
         self.assertEqual(sent_email.to, ['pkvglobalinfotech@gmail.com'])
         self.assertEqual(sent_email.reply_to, ['admin@cityhospital.example'])
         self.assertEqual(sent_email.from_email, settings.DEFAULT_FROM_EMAIL)
+
+        ack_email = mail.outbox[1]
+        self.assertIn("Thank you for contacting PKV Global Infotech", ack_email.subject)
+        self.assertEqual(ack_email.to, ['admin@cityhospital.example'])
+        self.assertIn("City General Hospital", ack_email.body)
+        self.assertIn("reply to you shortly", ack_email.body)
 
         # Admin display
         self.client.force_login(self.admin_user)
@@ -227,11 +233,15 @@ class WebsiteTests(TestCase):
         self.assertIsNotNone(enquiry)
         self.assertTrue(enquiry.email_sent)
 
-        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(len(mail.outbox), 2)
         sent_email = mail.outbox[0]
         self.assertIn("Website Maintenance", sent_email.subject)
         self.assertEqual(sent_email.to, ['pkvglobalinfotech@gmail.com'])
         self.assertEqual(sent_email.reply_to, ['support@apexretailers.example'])
+
+        ack_email = mail.outbox[1]
+        self.assertIn("Thank you for contacting PKV Global Infotech", ack_email.subject)
+        self.assertEqual(ack_email.to, ['support@apexretailers.example'])
 
         self.client.force_login(self.admin_user)
         admin_response = self.client.get('/admin/website/contact/')

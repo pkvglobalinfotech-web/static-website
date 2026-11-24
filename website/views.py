@@ -6,7 +6,7 @@ from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 from django.utils import timezone
 
-from .models import Service, Project, Contact
+from .models import Service, Project, Contact, CompanySetting
 from .forms import ContactForm
 
 logger = logging.getLogger(__name__)
@@ -137,6 +137,44 @@ def contact(request):
                 logger.error("Failed to send enquiry notification email: %s", e)
                 enquiry.email_sent = False
                 enquiry.email_error = str(e)
+
+            # Automated acknowledgment / auto-reply to the visitor's submitted email
+            try:
+                company_setting = CompanySetting.get_settings()
+                company_email = company_setting.email or recipient
+                company_phone = company_setting.phone or "+91 93455 96961"
+
+                ack_subject = f"Thank you for contacting PKV Global Infotech - We've received your enquiry"
+                ack_body = (
+                    f"Dear {enquiry.name},\n\n"
+                    f"Thank you for reaching out to PKV Global Infotech!\n\n"
+                    f"We have received your enquiry regarding \"{enquiry.topic}\". "
+                    f"Our team is reviewing your requirement and will reply to you shortly.\n\n"
+                    f"--------------------------------------------------\n"
+                    f"Summary of Your Submitted Details:\n"
+                    f"Topic: {enquiry.topic}\n"
+                    f"Phone: {enquiry.phone or 'Not provided'}\n\n"
+                    f"Your Message:\n{enquiry.message}\n"
+                    f"--------------------------------------------------\n\n"
+                    f"If you have any clarifications, questions, or additional details to share, "
+                    f"please feel free to reply directly to this email or reach us at:\n"
+                    f"• Email: {company_email}\n"
+                    f"• Phone: {company_phone}\n\n"
+                    f"Best regards,\n"
+                    f"PKV Global Infotech Team\n"
+                    f"23(1)/190, puduchery, Pennaluripeta, Tiruvallur, Tiruvallur- 602026, Tamil Nadu\n"
+                )
+
+                ack_msg = EmailMessage(
+                    subject=ack_subject,
+                    body=ack_body,
+                    from_email=from_email,
+                    to=[enquiry.email],
+                    reply_to=[company_email],
+                )
+                ack_msg.send(fail_silently=False)
+            except Exception as e:
+                logger.error("Failed to send auto-reply acknowledgment email to %s: %s", enquiry.email, e)
 
             enquiry.save()
 
