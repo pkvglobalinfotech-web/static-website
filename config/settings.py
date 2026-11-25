@@ -12,8 +12,10 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load local .env file if it exists
+# Load local .env file if it exists; fallback to .env.example if .env is missing
 env_file = BASE_DIR / ".env"
+if not env_file.exists():
+    env_file = BASE_DIR / ".env.example"
 if env_file.exists():
     with open(env_file, "r") as f:
         for line in f:
@@ -137,14 +139,14 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 MEDIA_URL = os.getenv('MEDIA_URL', '/media/')
 MEDIA_ROOT = Path(os.getenv('MEDIA_ROOT', str(BASE_DIR / 'media')))
 
-# Email Configuration
-EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
-EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.example.com')
+# Email Configuration (defaults to Gmail SMTP for PKV Global Infotech)
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True').lower() in ('true', '1')
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'no-reply@pkvglobalinfotech.com')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'pkvglobalinfotech@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'anwdoniglaxrfids')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'pkvglobalinfotech@gmail.com')
 
 # Company Monitored Inbox for notification delivery
 NOTIFICATION_EMAIL = os.getenv('NOTIFICATION_EMAIL', 'pkvglobalinfotech@gmail.com')
