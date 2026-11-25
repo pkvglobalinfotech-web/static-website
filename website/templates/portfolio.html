@@ -23,7 +23,7 @@
                     <!-- Development Stage Badge -->
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <span class="badge {% if product.stage == 'ready_to_demo' %}bg-success{% elif product.stage == 'live' %}bg-info text-dark{% else %}bg-primary{% endif %} px-3 py-2 rounded-pill small">
-                            <i class="bi bi-gear-wide-connected me-1"></i>{{ product.get_stage_display }}
+                            <i class="bi bi-gear-wide-connected me-1"></i>{{ product.stage_label }}
                         </span>
                         {% if product.technology %}
                         <span class="text-secondary small fw-medium">{{ product.technology }}</span>
@@ -49,13 +49,13 @@
                     </p>
 
                     <!-- Module Breakdown -->
-                    {% if product.get_modules_list %}
+                    {% if product.modules %}
                     <div class="mb-4 mt-auto">
                         <h6 class="text-uppercase small fw-bold text-secondary mb-2" style="font-size: 0.75rem; letter-spacing: 0.5px;">
                             Modules &amp; Functional Scope:
                         </h6>
                         <ul class="list-unstyled mb-0 small text-light">
-                            {% for module in product.get_modules_list %}
+                            {% for module in product.modules %}
                             <li class="mb-2 d-flex align-items-start">
                                 <i class="bi bi-check2 text-primary me-2 mt-1"></i>
                                 <span>{{ module }}</span>
