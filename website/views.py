@@ -1,5 +1,7 @@
+import sys
 from datetime import timedelta
 import logging
+import threading
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMessage
@@ -68,12 +70,97 @@ def about(request):
     return render(request, "about.html")
 
 
+def _send_enquiry_notifications(enquiry):
+    """
+    Worker to dispatch staff notification and visitor auto-reply.
+    Runs asynchronously in web workers so the HTTP response returns immediately (<50ms),
+    completely preventing cloud worker timeout / 500 errors if SMTP is slow or blocked.
+    Runs synchronously in test environments.
+    """
+    from .models import CompanySetting
+
+    recipient = getattr(settings, "NOTIFICATION_EMAIL", "pkvglobalinfotech@gmail.com")
+    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "pkvglobalinfotech@gmail.com")
+
+    subject = f"[Website Enquiry] {enquiry.topic} from {enquiry.name}"
+    body = (
+        f"A new enquiry has been submitted on the PKV Global Infotech website:\n\n"
+        f"Topic: {enquiry.topic}\n"
+        f"Name: {enquiry.name}\n"
+        f"Email: {enquiry.email}\n"
+        f"Phone: {enquiry.phone or 'Not provided'}\n\n"
+        f"Message:\n{enquiry.message}\n\n"
+        f"--------------------------------------------------\n"
+        f"Status: New\n"
+        f"Submitted at: {enquiry.created}\n"
+    )
+
+    try:
+        email_msg = EmailMessage(
+            subject=subject,
+            body=body,
+            from_email=from_email,
+            to=[recipient],
+            reply_to=[enquiry.email],
+        )
+        email_msg.send(fail_silently=False)
+        enquiry.email_sent = True
+        enquiry.email_error = None
+    except Exception as e:
+        logger.error("Failed to send enquiry notification email: %s", e)
+        enquiry.email_sent = False
+        enquiry.email_error = str(e)
+
+    # Automated acknowledgment / auto-reply to visitor's submitted email
+    try:
+        company_setting = CompanySetting.get_settings()
+        company_email = company_setting.email or recipient
+        company_phone = company_setting.phone or "+91 93455 96961"
+
+        ack_subject = "Thank you for contacting PKV Global Infotech - We've received your enquiry"
+        ack_body = (
+            f"Dear {enquiry.name},\n\n"
+            f"Thank you for reaching out to PKV Global Infotech!\n\n"
+            f"We have received your enquiry regarding \"{enquiry.topic}\". "
+            f"Our team is reviewing your requirement and will reply to you shortly.\n\n"
+            f"--------------------------------------------------\n"
+            f"Summary of Your Submitted Details:\n"
+            f"Topic: {enquiry.topic}\n"
+            f"Phone: {enquiry.phone or 'Not provided'}\n\n"
+            f"Your Message:\n{enquiry.message}\n"
+            f"--------------------------------------------------\n\n"
+            f"If you have any clarifications, questions, or additional details to share, "
+            f"please feel free to reply directly to this email or reach us at:\n"
+            f"• Email: {company_email}\n"
+            f"• Phone: {company_phone}\n\n"
+            f"Best regards,\n"
+            f"PKV Global Infotech Team\n"
+            f"23(1)/190, puduchery, Pennaluripeta, Tiruvallur, Tiruvallur- 602026, Tamil Nadu\n"
+        )
+
+        ack_msg = EmailMessage(
+            subject=ack_subject,
+            body=ack_body,
+            from_email=from_email,
+            to=[enquiry.email],
+            reply_to=[company_email],
+        )
+        ack_msg.send(fail_silently=False)
+    except Exception as e:
+        logger.error("Failed to send auto-reply acknowledgment email to %s: %s", enquiry.email, e)
+
+    try:
+        enquiry.save(update_fields=['email_sent', 'email_error'])
+    except Exception as e:
+        logger.error("Failed to update enquiry status: %s", e)
+
+
 def contact(request):
     """
     Enquiry form handler.
     Pre-selects requested product or service topic from URL parameters.
-    Saves enquiry to DB, attempts notification dispatch with Reply-To header,
-    and logs any email failure while preserving database record.
+    Saves enquiry to DB, dispatches email notification without blocking,
+    and returns immediate user confirmation.
     """
     selected_topic = (
         request.GET.get("topic")
@@ -105,78 +192,15 @@ def contact(request):
             enquiry.status = "new"
             enquiry.save()
 
-            # Attempt notification email with configured sender, company inbox, and visitor Reply-To
-            recipient = getattr(settings, "NOTIFICATION_EMAIL", "pkvglobalinfotech@gmail.com")
-            from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "no-reply@pkvglobalinfotech.com")
-
-            subject = f"[Website Enquiry] {enquiry.topic} from {enquiry.name}"
-            body = (
-                f"A new enquiry has been submitted on the PKV Global Infotech website:\n\n"
-                f"Topic: {enquiry.topic}\n"
-                f"Name: {enquiry.name}\n"
-                f"Email: {enquiry.email}\n"
-                f"Phone: {enquiry.phone or 'Not provided'}\n\n"
-                f"Message:\n{enquiry.message}\n\n"
-                f"--------------------------------------------------\n"
-                f"Status: New\n"
-                f"Submitted at: {enquiry.created}\n"
-            )
-
-            try:
-                email_msg = EmailMessage(
-                    subject=subject,
-                    body=body,
-                    from_email=from_email,
-                    to=[recipient],
-                    reply_to=[enquiry.email],
-                )
-                email_msg.send(fail_silently=False)
-                enquiry.email_sent = True
-                enquiry.email_error = None
-            except Exception as e:
-                logger.error("Failed to send enquiry notification email: %s", e)
-                enquiry.email_sent = False
-                enquiry.email_error = str(e)
-
-            # Automated acknowledgment / auto-reply to the visitor's submitted email
-            try:
-                company_setting = CompanySetting.get_settings()
-                company_email = company_setting.email or recipient
-                company_phone = company_setting.phone or "+91 93455 96961"
-
-                ack_subject = f"Thank you for contacting PKV Global Infotech - We've received your enquiry"
-                ack_body = (
-                    f"Dear {enquiry.name},\n\n"
-                    f"Thank you for reaching out to PKV Global Infotech!\n\n"
-                    f"We have received your enquiry regarding \"{enquiry.topic}\". "
-                    f"Our team is reviewing your requirement and will reply to you shortly.\n\n"
-                    f"--------------------------------------------------\n"
-                    f"Summary of Your Submitted Details:\n"
-                    f"Topic: {enquiry.topic}\n"
-                    f"Phone: {enquiry.phone or 'Not provided'}\n\n"
-                    f"Your Message:\n{enquiry.message}\n"
-                    f"--------------------------------------------------\n\n"
-                    f"If you have any clarifications, questions, or additional details to share, "
-                    f"please feel free to reply directly to this email or reach us at:\n"
-                    f"• Email: {company_email}\n"
-                    f"• Phone: {company_phone}\n\n"
-                    f"Best regards,\n"
-                    f"PKV Global Infotech Team\n"
-                    f"23(1)/190, puduchery, Pennaluripeta, Tiruvallur, Tiruvallur- 602026, Tamil Nadu\n"
-                )
-
-                ack_msg = EmailMessage(
-                    subject=ack_subject,
-                    body=ack_body,
-                    from_email=from_email,
-                    to=[enquiry.email],
-                    reply_to=[company_email],
-                )
-                ack_msg.send(fail_silently=False)
-            except Exception as e:
-                logger.error("Failed to send auto-reply acknowledgment email to %s: %s", enquiry.email, e)
-
-            enquiry.save()
+            # In unit tests, run synchronously; in live web requests, dispatch in background thread
+            if 'test' in sys.argv or getattr(settings, 'IS_TESTING', False):
+                _send_enquiry_notifications(enquiry)
+            else:
+                threading.Thread(
+                    target=_send_enquiry_notifications,
+                    args=(enquiry,),
+                    daemon=True
+                ).start()
 
             messages.success(
                 request,
