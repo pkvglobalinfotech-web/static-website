@@ -40,12 +40,25 @@ class ContactForm(forms.ModelForm):
         initial_topic = kwargs.pop('initial_topic', None)
         super().__init__(*args, **kwargs)
 
+        DEFAULT_PRODUCTS = [
+            ('Hospital Software / Hospital ERP', 'Product: Hospital Software / Hospital ERP'),
+            ('HR Applications', 'Product: HR Applications'),
+            ('Multi-module ERP', 'Product: Multi-module ERP'),
+        ]
+
+        DEFAULT_SERVICES = [
+            ('Website Design & Development', 'Service: Website Design & Development'),
+            ('Website Maintenance', 'Service: Website Maintenance'),
+            ('Software & API Integration', 'Service: Software & API Integration'),
+            ('IT Support & Application Maintenance', 'Service: IT Support & Application Maintenance'),
+        ]
+
         choices = [
             ('', '-- Select an Option --'),
             ('General Enquiry', 'General Enquiry'),
         ]
 
-        # Products group
+        # Products group: load from DB with guaranteed fallback so cloud is never empty
         product_options = []
         try:
             for p in Project.objects.filter(is_active=True).order_by('order', 'id'):
@@ -53,10 +66,12 @@ class ContactForm(forms.ModelForm):
         except Exception:
             pass
 
-        if product_options:
-            choices.append(('Products in Development', tuple(product_options)))
+        if not product_options:
+            product_options = list(DEFAULT_PRODUCTS)
 
-        # Services group
+        choices.append(('Products in Development', tuple(product_options)))
+
+        # Services group: load from DB with guaranteed fallback so cloud is never empty
         service_options = []
         try:
             for s in Service.objects.filter(is_active=True).order_by('order', 'id'):
@@ -64,8 +79,10 @@ class ContactForm(forms.ModelForm):
         except Exception:
             pass
 
-        if service_options:
-            choices.append(('IT Services', tuple(service_options)))
+        if not service_options:
+            service_options = list(DEFAULT_SERVICES)
+
+        choices.append(('IT Services', tuple(service_options)))
 
         self.fields['topic'].choices = choices
 
@@ -86,10 +103,13 @@ class ContactForm(forms.ModelForm):
 
             if selected:
                 self.fields['topic'].initial = selected
+                self.initial['topic'] = selected
             else:
                 # If non-standard string, allow it by adding to choices dynamically
                 choices.append(('Other', ((initial_topic, initial_topic),)))
                 self.fields['topic'].choices = choices
                 self.fields['topic'].initial = initial_topic
+                self.initial['topic'] = initial_topic
         elif not self.is_bound:
             self.fields['topic'].initial = 'General Enquiry'
+            self.initial.setdefault('topic', 'General Enquiry')

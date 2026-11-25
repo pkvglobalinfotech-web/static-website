@@ -4,6 +4,7 @@ from django.core import mail
 from django.core.management import call_command
 from django.contrib.auth.models import User
 from website.models import Service, Project, Contact, CompanySetting
+from website.forms import ContactForm
 from unittest.mock import patch
 
 
@@ -370,3 +371,43 @@ class WebsiteTests(TestCase):
         # Database record count remains 1 (no duplicate record created)
         after_count = Contact.objects.filter(email='duplicate@example.com').count()
         self.assertEqual(after_count, 1)
+
+    def test_contact_form_dropdown_options_fallback_when_db_empty(self):
+        """
+        Verify that ContactForm provides default options for products and services
+        even when the database has 0 products and 0 services (common on fresh cloud deploys).
+        """
+        Project.objects.all().delete()
+        Service.objects.all().delete()
+
+        form = ContactForm()
+        widget_html = form['topic'].as_widget()
+
+        self.assertIn('General Enquiry', widget_html)
+        self.assertIn('Products in Development', widget_html)
+        self.assertIn('Hospital Software / Hospital ERP', widget_html)
+        self.assertIn('HR Applications', widget_html)
+        self.assertIn('Multi-module ERP', widget_html)
+        self.assertIn('IT Services', widget_html)
+        self.assertIn('Website Design &amp; Development', widget_html)
+        self.assertIn('Website Maintenance', widget_html)
+        self.assertIn('Software &amp; API Integration', widget_html)
+        self.assertIn('IT Support &amp; Application Maintenance', widget_html)
+
+    def test_lazy_seed_catalog_populates_empty_database(self):
+        """
+        Verify that _ensure_catalog_seeded() populates Project and Service
+        tables when they are empty, ensuring cloud pages are never blank.
+        """
+        Project.objects.all().delete()
+        Service.objects.all().delete()
+        self.assertEqual(Project.objects.count(), 0)
+        self.assertEqual(Service.objects.count(), 0)
+
+        # Call seed_sample --create to simulate lazy seeding
+        call_command('seed_sample', create=True)
+
+        self.assertEqual(Project.objects.count(), 3)
+        self.assertEqual(Service.objects.count(), 4)
+
+

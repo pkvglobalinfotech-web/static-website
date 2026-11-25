@@ -100,11 +100,9 @@ class Command(BaseCommand):
         ]
 
         for p_data in products_data:
-            obj, created = Project.objects.get_or_create(
-                title=p_data['title'],
-                defaults=p_data
-            )
-            if created:
+            obj = Project.objects.filter(title=p_data['title']).first()
+            if not obj:
+                obj = Project.objects.create(**p_data)
                 self.stdout.write(self.style.SUCCESS(f'Created product: {obj.title}'))
             else:
                 self.stdout.write(self.style.NOTICE(f'Product already exists; preserving staff edits: {obj.title}'))
@@ -150,11 +148,9 @@ class Command(BaseCommand):
         ]
 
         for s_data in services_data:
-            obj, created = Service.objects.get_or_create(
-                title=s_data['title'],
-                defaults=s_data
-            )
-            if created:
+            obj = Service.objects.filter(title=s_data['title']).first()
+            if not obj:
+                obj = Service.objects.create(**s_data)
                 self.stdout.write(self.style.SUCCESS(f'Created service: {obj.title}'))
             else:
                 self.stdout.write(self.style.NOTICE(f'Service already exists; preserving staff edits: {obj.title}'))

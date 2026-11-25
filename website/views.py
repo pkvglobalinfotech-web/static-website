@@ -14,6 +14,19 @@ from .forms import ContactForm
 logger = logging.getLogger(__name__)
 
 
+def _ensure_catalog_seeded():
+    """
+    Lazy seed: ensure default company settings, products, and services exist
+    in database if deployed on a fresh or unseeded cloud database.
+    """
+    try:
+        if not Project.objects.exists() or not Service.objects.exists():
+            from django.core.management import call_command
+            call_command('seed_sample', '--create')
+    except Exception as e:
+        logger.debug("Auto-seed check: %s", e)
+
+
 def home(request):
     """
     Homepage showcasing:
@@ -22,6 +35,7 @@ def home(request):
     3. IT Services
     4. Contact / Inquiry CTA
     """
+    _ensure_catalog_seeded()
     products = Project.objects.filter(is_active=True).order_by('order', 'id')
     services = Service.objects.filter(is_active=True).order_by('order', 'id')
 
@@ -40,6 +54,7 @@ def products_view(request):
     Product catalogue view.
     Preserves both /portfolio/ and /products/ URLs.
     """
+    _ensure_catalog_seeded()
     products = Project.objects.filter(is_active=True).order_by('order', 'id')
     return render(
         request,
@@ -55,6 +70,7 @@ def services_view(request):
     """
     IT Services view showcasing active offerings and enquiry links.
     """
+    _ensure_catalog_seeded()
     services = Service.objects.filter(is_active=True).order_by('order', 'id')
     return render(
         request,
@@ -162,6 +178,7 @@ def contact(request):
     Saves enquiry to DB, dispatches email notification without blocking,
     and returns immediate user confirmation.
     """
+    _ensure_catalog_seeded()
     selected_topic = (
         request.GET.get("topic")
         or request.GET.get("service")
