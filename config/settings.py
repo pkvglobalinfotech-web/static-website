@@ -137,6 +137,10 @@ EMAIL_TIMEOUT = int(os.getenv('EMAIL_TIMEOUT', '10'))
 # Company Monitored Inbox for notification delivery
 NOTIFICATION_EMAIL = os.getenv('NOTIFICATION_EMAIL', 'pkvglobalinfotech@gmail.com')
 
+# Resend HTTPS Email API (Port 443 — works seamlessly on Render cloud where SMTP ports 25, 465, 587 are blocked)
+RESEND_API_KEY = os.getenv('RESEND_API_KEY', '')
+RESEND_FROM_EMAIL = os.getenv('RESEND_FROM_EMAIL', 'PKV Global Infotech <onboarding@resend.dev>')
+
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
