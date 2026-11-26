@@ -79,9 +79,11 @@ def _send_enquiry_emails(data: dict):
     )
 
     subject = f"New Enquiry: {data['topic']} — {data['name']}"
+    company_info = data.get('company_name') or 'Not provided'
     body = (
         f"You have received a new enquiry from the PKV Global Infotech website:\n\n"
         f"Name:    {data['name']}\n"
+        f"Company: {company_info}\n"
         f"Email:   {data['email']}\n"
         f"Phone:   {data.get('phone') or 'Not provided'}\n"
         f"Topic:   {data['topic']}\n\n"
@@ -141,6 +143,7 @@ def _send_enquiry_emails(data: dict):
         f"--------------------------------------------------\n"
         f"Summary of Your Submitted Details:\n"
         f"Topic:   {data['topic']}\n"
+        f"Company: {company_info}\n"
         f"Phone:   {data.get('phone') or 'Not provided'}\n\n"
         f"Your Message:\n{data['message']}\n"
         f"--------------------------------------------------\n\n"

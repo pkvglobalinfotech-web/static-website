@@ -110,11 +110,13 @@ class ContactFormTests(TestCase):
         form = ContactForm(data={
             'topic': 'General Enquiry',
             'name': 'Test User',
+            'company_name': 'Acme Healthcare Ltd',
             'email': 'test@example.com',
             'phone': '+91 99999 00000',
             'message': 'Hello, I need a website.',
         })
         self.assertTrue(form.is_valid(), form.errors)
+        self.assertEqual(form.cleaned_data['company_name'], 'Acme Healthcare Ltd')
 
     def test_invalid_without_required_fields(self):
         form = ContactForm(data={})

@@ -23,6 +23,15 @@ class ContactForm(forms.Form):
             'required': True,
         }),
     )
+    company_name = forms.CharField(
+        max_length=150,
+        required=False,
+        label="Company Name",
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Your company or organization name (optional)',
+        }),
+    )
     email = forms.EmailField(
         label="Email Address",
         widget=forms.EmailInput(attrs={
