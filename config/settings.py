@@ -137,6 +137,12 @@ EMAIL_TIMEOUT = int(os.getenv('EMAIL_TIMEOUT', '10'))
 # Company Monitored Inbox for notification delivery
 NOTIFICATION_EMAIL = os.getenv('NOTIFICATION_EMAIL', 'pkvglobalinfotech@gmail.com')
 
+# Google Apps Script Web App HTTPS Email Dispatcher (Port 443 — sends auto-replies directly to client from pkvglobalinfotech@gmail.com)
+GOOGLE_SCRIPT_URL = os.getenv(
+    'GOOGLE_SCRIPT_URL',
+    'https://script.google.com/macros/s/AKfycbwbUzny2SHZ53FWea3LQ3PzNWt_MT96LnQL5NyxMGxyn1e6O9wGZMtCWoW3YwlGY2_9hw/exec'
+)
+
 # Resend HTTPS Email API (Port 443 — works seamlessly on Render cloud where SMTP ports 25, 465, 587 are blocked)
 import base64
 _DEFAULT_RESEND_KEY = base64.b64decode(b'cmVfTkhlZzdjN0xfNW9GOVB4OHJHamNlUDZ5WHdYMkVUeFJH').decode('ascii')

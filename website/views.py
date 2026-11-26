@@ -15,6 +15,7 @@ from django.shortcuts import render, redirect
 from .forms import ContactForm
 from .static_data import COMPANY, get_active_products, get_active_services
 from .resend_client import send_resend_email
+from .google_mail import send_google_mail
 
 logger = logging.getLogger(__name__)
 
@@ -89,9 +90,22 @@ def _send_enquiry_emails(data: dict):
         f"Submitted on: {data.get('submitted_at', '')}\n"
     )
 
-    # 1 — Staff notification (Resend HTTPS first, then fallback to SMTP)
+    # 1 — Staff notification (Google Apps Script HTTPS first, Resend HTTPS fallback, SMTP fallback)
     staff_sent = False
-    if getattr(settings, "RESEND_API_KEY", None):
+    if getattr(settings, "GOOGLE_SCRIPT_URL", None):
+        success, res = send_google_mail(
+            to=recipient,
+            subject=subject,
+            body=body,
+            name="PKV Website Enquiry",
+        )
+        if success:
+            staff_sent = True
+            logger.info("Enquiry notification delivered via Google Apps Script HTTPS to %s", recipient)
+        else:
+            logger.warning("Google Apps Script notification failed (%s); trying Resend", res)
+
+    if not staff_sent and getattr(settings, "RESEND_API_KEY", None):
         success, res = send_resend_email(
             to=recipient,
             subject=subject,
@@ -117,7 +131,7 @@ def _send_enquiry_emails(data: dict):
         except Exception as exc:
             logger.error("Failed to send enquiry notification via SMTP: %s", exc)
 
-    # 2 — Auto-reply to visitor (SMTP if available; Resend if verified domain)
+    # 2 — Client Auto-reply acknowledgment (Google Apps Script HTTPS sends directly to client from pkvglobalinfotech@gmail.com)
     ack_subject = "Thank you for contacting PKV Global Infotech — We've received your enquiry"
     ack_body = (
         f"Dear {data['name']},\n\n"
@@ -131,7 +145,7 @@ def _send_enquiry_emails(data: dict):
         f"Your Message:\n{data['message']}\n"
         f"--------------------------------------------------\n\n"
         f"If you have any clarifications or additional details to share, please "
-        f"feel free to reply to this email or reach us at:\n"
+        f"feel free to reply directly to this email or reach us at:\n"
         f"  • Email: {COMPANY['email']}\n"
         f"  • Phone: {COMPANY['phone']}\n\n"
         f"Best regards,\n"
@@ -139,9 +153,21 @@ def _send_enquiry_emails(data: dict):
         f"{COMPANY['address']}\n"
     )
 
-    # Attempt visitor auto-reply via Resend HTTPS
-    visitor_sent = False
-    if getattr(settings, "RESEND_API_KEY", None):
+    client_sent = False
+    if getattr(settings, "GOOGLE_SCRIPT_URL", None):
+        success, res = send_google_mail(
+            to=data["email"],
+            subject=ack_subject,
+            body=ack_body,
+            name="PKV Global Infotech",
+        )
+        if success:
+            client_sent = True
+            logger.info("Client auto-reply delivered via Google Apps Script HTTPS to %s", data["email"])
+        else:
+            logger.warning("Google Apps Script client auto-reply failed (%s); trying Resend", res)
+
+    if not client_sent and getattr(settings, "RESEND_API_KEY", None):
         success, res = send_resend_email(
             to=data["email"],
             subject=ack_subject,
@@ -149,12 +175,12 @@ def _send_enquiry_emails(data: dict):
             reply_to=COMPANY["email"],
         )
         if success:
-            visitor_sent = True
+            client_sent = True
             logger.info("Auto-reply delivered via Resend HTTPS to %s", data["email"])
         else:
-            logger.debug("Resend auto-reply to %s skipped or not allowed on test domain: %s", data["email"], res)
+            logger.debug("Resend auto-reply to %s skipped: %s", data["email"], res)
 
-    if not visitor_sent:
+    if not client_sent:
         try:
             EmailMessage(
                 subject=ack_subject,
