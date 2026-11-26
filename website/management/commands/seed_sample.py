@@ -35,24 +35,24 @@ class Command(BaseCommand):
         else:
             self.stdout.write(self.style.NOTICE('Company Settings already exist; preserving staff edits.'))
 
-        # 2. Products: all unconfirmed capabilities set to 'In Development'
+        # 2. Products
         products_data = [
             {
                 'title': 'Hospital Software / Hospital ERP',
                 'subtitle': 'Healthcare Operations & Clinical Management Suite',
-                'technology': 'Django, Python & PostgreSQL',
+                'technology': '',
                 'description': (
                     'Specialised software for hospital operations and clinical care workflows, '
                     'designed to streamline patient handling, medical recordkeeping, and operational billing.'
                 ),
                 'modules': (
-                    'Patient Registration & Queue Scheduling (In Development)\n'
-                    'Outpatient (OP) & Inpatient (IP) Billing (In Development)\n'
-                    'Pharmacy & Medication Dispensing (In Development)\n'
-                    'Inventory & Consumables Control (In Development)\n'
-                    'Clinical Records & Doctor Notes (In Development)'
+                    'Patient Registration & Queue Scheduling\n'
+                    'Outpatient (OP) & Inpatient (IP) Billing\n'
+                    'Pharmacy & Medication Dispensing\n'
+                    'Inventory & Consumables Control\n'
+                    'Clinical Records & Doctor Notes'
                 ),
-                'stage': 'in_development',
+                'stage': 'live',
                 'order': 1,
                 'is_active': True,
                 'live_demo': '',
@@ -60,19 +60,19 @@ class Command(BaseCommand):
             {
                 'title': 'HR Applications',
                 'subtitle': 'Employee Records & Workflow Automation',
-                'technology': 'Python, Modern Web & Role-Based Access',
+                'technology': '',
                 'description': (
                     'Dedicated applications for employee records and HR workflows. '
                     'Built to reduce repetitive human-resource administration and standardize internal requests.'
                 ),
                 'modules': (
-                    'Employee Master Records & Digital Profiles (In Development)\n'
-                    'Attendance & Leave Approval Workflows (In Development)\n'
-                    'Payroll Calculation & Payslip Export (In Development)\n'
-                    'Performance & Review Cycles (Planned)\n'
-                    'Recruitment Pipeline & Candidate Onboarding (Planned)'
+                    'Employee Master Records & Digital Profiles\n'
+                    'Attendance & Leave Approval Workflows\n'
+                    'Payroll Calculation & Payslip Export\n'
+                    'Performance & Review Cycles\n'
+                    'Recruitment Pipeline & Candidate Onboarding'
                 ),
-                'stage': 'in_development',
+                'stage': 'live',
                 'order': 2,
                 'is_active': True,
                 'live_demo': '',
@@ -80,19 +80,19 @@ class Command(BaseCommand):
             {
                 'title': 'Multi-module ERP',
                 'subtitle': 'Modular Enterprise Operations Connector',
-                'technology': 'Modular Architecture & Secure APIs',
+                'technology': '',
                 'description': (
                     'Business software that connects functions such as HR, inventory, purchasing, '
                     'finance, and multi-tier approvals into a unified, extensible architecture.'
                 ),
                 'modules': (
-                    'Human Resources & Workforce Management (In Development)\n'
-                    'Inventory & Warehouse Stock Tracking (In Development)\n'
-                    'Purchasing & Supplier Purchase Orders (In Development)\n'
-                    'Financial Accounting & Invoicing (In Development)\n'
-                    'Multi-level Approval Workflows (In Development)'
+                    'Human Resources & Workforce Management\n'
+                    'Inventory & Warehouse Stock Tracking\n'
+                    'Purchasing & Supplier Purchase Orders\n'
+                    'Financial Accounting & Invoicing\n'
+                    'Multi-level Approval Workflows'
                 ),
-                'stage': 'in_development',
+                'stage': 'live',
                 'order': 3,
                 'is_active': True,
                 'live_demo': '',

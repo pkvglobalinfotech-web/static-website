@@ -279,7 +279,7 @@
                                     </div>
                                     <div class="showcase-feature-item">
                                         <h6><i class="bi bi-code-slash"></i> High-Performance Web Backends</h6>
-                                        <p>Secure Django, Python, and modern JavaScript architectures optimized for sub-second speeds.</p>
+                                        <p>Secure, scalable, and modern cloud architectures optimized for sub-second speeds.</p>
                                     </div>
                                     <div class="showcase-feature-item">
                                         <h6><i class="bi bi-search"></i> Search Engine Optimization (SEO)</h6>
@@ -502,14 +502,14 @@
     </div>
 </section>
 
-<!-- 2. Products in Development Section -->
+<!-- 2. Products Section -->
 <section class="py-5" id="products" style="background-color: #070d1e;">
     <div class="container py-4">
         <div class="text-center mb-5">
-            <span class="text-primary text-uppercase fw-semibold small tracking-wide">Product Roadmap</span>
-            <h2 class="h1 fw-bold text-white mt-1">Products in Development</h2>
+            <span class="text-primary text-uppercase fw-semibold small tracking-wide">Enterprise Solutions</span>
+            <h2 class="h1 fw-bold text-white mt-1">Software Products &amp; Solutions</h2>
             <p class="text-secondary mx-auto" style="max-width: 680px;">
-                Specialised business applications currently being engineered. We publish our actual progress and welcome partner feedback.
+                Specialised business applications and enterprise management suites designed to modernise core business processes.
             </p>
         </div>
 
@@ -518,14 +518,18 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card h-100 border-0 shadow-sm p-4 d-flex flex-column" style="background-color: #0f1b35; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 16px;">
                     <!-- Status Badge -->
+                    {% if product.stage_label or product.technology %}
                     <div class="d-flex justify-content-between align-items-start mb-3">
+                        {% if product.stage_label %}
                         <span class="badge {% if product.stage == 'ready_to_demo' %}bg-success{% elif product.stage == 'live' %}bg-info text-dark{% else %}bg-primary{% endif %} px-3 py-2 rounded-pill small">
                             <i class="bi bi-gear-wide-connected me-1"></i>{{ product.stage_label }}
                         </span>
+                        {% endif %}
                         {% if product.technology %}
                         <span class="text-secondary small fw-medium">{{ product.technology }}</span>
                         {% endif %}
                     </div>
+                    {% endif %}
 
                     <!-- Screenshot / Graphic: only if uploaded -->
                     {% if product.image %}

@@ -37,20 +37,20 @@ PRODUCTS = [
         "id": 1,
         "title": "Hospital Software / Hospital ERP",
         "subtitle": "Healthcare Operations & Clinical Management Suite",
-        "technology": "Django, Python & PostgreSQL",
+        "technology": "",
         "description": (
             "Specialised software for hospital operations and clinical care workflows, "
             "designed to streamline patient handling, medical recordkeeping, and operational billing."
         ),
         "modules": [
-            "Patient Registration & Queue Scheduling (In Development)",
-            "Outpatient (OP) & Inpatient (IP) Billing (In Development)",
-            "Pharmacy & Medication Dispensing (In Development)",
-            "Inventory & Consumables Control (In Development)",
-            "Clinical Records & Doctor Notes (In Development)",
+            "Patient Registration & Queue Scheduling",
+            "Outpatient (OP) & Inpatient (IP) Billing",
+            "Pharmacy & Medication Dispensing",
+            "Inventory & Consumables Control",
+            "Clinical Records & Doctor Notes",
         ],
-        "stage": "in_development",
-        "stage_label": "In Development",
+        "stage": "live",
+        "stage_label": "",
         "icon": "bi-hospital",
         "image": None,
         "github": "",
@@ -62,20 +62,20 @@ PRODUCTS = [
         "id": 2,
         "title": "HR Applications",
         "subtitle": "Employee Records & Workflow Automation",
-        "technology": "Python, Modern Web & Role-Based Access",
+        "technology": "",
         "description": (
             "Dedicated applications for employee records and HR workflows. "
             "Built to reduce repetitive human-resource administration and standardize internal requests."
         ),
         "modules": [
-            "Employee Master Records & Digital Profiles (In Development)",
-            "Attendance & Leave Approval Workflows (In Development)",
-            "Payroll Calculation & Payslip Export (In Development)",
-            "Performance & Review Cycles (Planned)",
-            "Recruitment Pipeline & Candidate Onboarding (Planned)",
+            "Employee Master Records & Digital Profiles",
+            "Attendance & Leave Approval Workflows",
+            "Payroll Calculation & Payslip Export",
+            "Performance & Review Cycles",
+            "Recruitment Pipeline & Candidate Onboarding",
         ],
-        "stage": "in_development",
-        "stage_label": "In Development",
+        "stage": "live",
+        "stage_label": "",
         "icon": "bi-people",
         "image": None,
         "github": "",
@@ -87,20 +87,20 @@ PRODUCTS = [
         "id": 3,
         "title": "Multi-module ERP",
         "subtitle": "Modular Enterprise Operations Connector",
-        "technology": "Modular Architecture & Secure APIs",
+        "technology": "",
         "description": (
             "Business software that connects functions such as HR, inventory, purchasing, "
             "finance, and multi-tier approvals into a unified, extensible architecture."
         ),
         "modules": [
-            "Human Resources & Workforce Management (In Development)",
-            "Inventory & Warehouse Stock Tracking (In Development)",
-            "Purchasing & Supplier Purchase Orders (In Development)",
-            "Financial Accounting & Invoicing (In Development)",
-            "Multi-level Approval Workflows (In Development)",
+            "Human Resources & Workforce Management",
+            "Inventory & Warehouse Stock Tracking",
+            "Purchasing & Supplier Purchase Orders",
+            "Financial Accounting & Invoicing",
+            "Multi-level Approval Workflows",
         ],
-        "stage": "in_development",
-        "stage_label": "In Development",
+        "stage": "live",
+        "stage_label": "",
         "icon": "bi-diagram-3",
         "image": None,
         "github": "",
@@ -188,7 +188,7 @@ def get_topic_choices():
     return [
         ("", "-- Select an Option --"),
         ("General Enquiry", "General Enquiry"),
-        ("Products in Development", product_options),
+        ("Software Products", product_options),
         ("IT Services", service_options),
     ]
 

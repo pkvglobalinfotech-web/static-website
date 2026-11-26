@@ -79,7 +79,7 @@ class TopicChoicesTests(TestCase):
     def test_dropdown_has_all_product_groups(self):
         choices = get_topic_choices()
         groups = [g for g, _ in choices]
-        self.assertIn("Products in Development", groups)
+        self.assertIn("Software Products", groups)
         self.assertIn("IT Services", groups)
 
     def test_dropdown_has_hospital_product(self):
